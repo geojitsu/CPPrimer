@@ -188,8 +188,44 @@ void ch7_ex5(void)
 	cout << factorme << "! = " << *presult << endl << endl;
 }
 
+int fill_array(double * input, int size)
+{
+	int loop = 0;
+	cout << "Enter a bunch of double values, ya fairy\n";
+			
+	for (; loop < size && cout << "#" << loop+1 << ": " && cin >> input[loop]; loop++)
+		;
+	cout << endl;
+	return loop;
+}
+
+int show_array(const double * input, int size)
+{
+	int loop = 0;
+
+	while (loop < size)
+	{
+		cout << "Array Element #" << loop+1 << ": " << input[loop] << endl;
+		loop++;
+	}
+	
+	return 0;
+}
+
+void reverse_array(double * input, int size)
+{
+	
+}
 void ch7_ex6(void)
 {
+	const int arraysize = 5;
+	int numberEntered, numsReturned;
+	numberEntered = numsReturned = 0;
+	double theArray[arraysize];
+
+	numberEntered = fill_array(theArray, arraysize);
+	numsReturned = show_array(theArray, numberEntered);
+
 }
 void ch7_ex7(void)
 {
