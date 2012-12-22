@@ -212,10 +212,25 @@ int show_array(const double * input, int size)
 	return 0;
 }
 
-void reverse_array(double * input, int size)
+void Reverse_array(double da[], int asize);
+void Reverse_array(double da[], int asize)
 {
-	
+	double tempo;
+	int countr = 0;
+	int newsize = asize;
+
+	asize--;
+
+	while(countr < asize)
+	{
+		tempo = da[countr];
+		da[countr++] = da[asize];
+		da[asize--] = tempo;
+	}
+
+	show_array(da, newsize);
 }
+
 void ch7_ex6(void)
 {
 	const int arraysize = 5;
@@ -225,7 +240,7 @@ void ch7_ex6(void)
 
 	numberEntered = fill_array(theArray, arraysize);
 	numsReturned = show_array(theArray, numberEntered);
-
+	Reverse_array(theArray, numberEntered);
 }
 void ch7_ex7(void)
 {
