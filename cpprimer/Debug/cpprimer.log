@@ -1,4 +1,4 @@
-﻿Build started 12/21/2012 11:03:57 PM.
+﻿Build started 12/24/2012 8:36:54 PM.
      1>Project "D:\Tools\DEV\Workspace\cpprimer\CPPrimer\cpprimer\cpprimer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\cpprimer.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -18,4 +18,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.04
+Time Elapsed 00:00:00.05

@@ -228,7 +228,7 @@ void Reverse_array(double da[], int asize)
 		da[asize--] = tempo;
 	}
 
-	show_array(da, newsize);
+	//show_array(da, newsize);
 }
 
 void ch7_ex6(void)
@@ -240,11 +240,88 @@ void ch7_ex6(void)
 
 	numberEntered = fill_array(theArray, arraysize);
 	numsReturned = show_array(theArray, numberEntered);
+	cout << "Reverse array...HOOO-OOOH\n\n";
 	Reverse_array(theArray, numberEntered);
+	show_array(theArray, numberEntered);
+	cout << "Double Reverse ... Yooo-oooh!\n\n";
+	Reverse_array(theArray, numberEntered);
+	show_array(theArray, numberEntered);
+	cout << "Double Reverse ... Yooo-oooh!\n\n";
+	Reverse_array(theArray+1, numberEntered-2);
+	show_array(theArray, numberEntered);
 }
+
+double * fill_array(double * arStart, double * arEnd);
+double * fill_array(double * arStart, double * arEnd)
+{
+	using namespace std;
+	double temp;
+	int i = 0;
+
+	while ( arStart != arEnd )
+	{
+		cout << "Enter value #" << (i + 1) << ": ";
+		cin >> temp;
+		if (!cin)
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+				continue;
+			cout << "Bad input; input process terminated.\n";
+			break;
+		}
+		else if (temp < 0)
+			break;
+		*(arStart++) = temp;
+		i++;
+	}
+	return arStart;
+}
+
+void show_array(const double * aStart, const double * aEnd);
+void show_array(const double * aStart, const double * aEnd)
+{
+	
+	for (int i = 0; aStart < aEnd; i++)
+	{
+		cout << "Property #" << (i + 1) << ": ";
+		cout << *(aStart++) << endl;
+	}
+}
+
+void revalue(double r, double * aStart, double * aEnd);
+void revalue(double r, double * aStart, double * aEnd)
+{
+	for (int i = 0; aStart < aEnd; i++)
+		*(aStart++) *= r;
+}
+
 void ch7_ex7(void)
 {
+	const int Max = 5;
+	double properties[Max];
+
+	double * size = fill_array(properties, properties+Max);
+	show_array(properties, size);
+
+	if (size)
+	{
+		cout << "Enter revaluation factor: ";
+		double factor;
+		while (!(cin >> factor))
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+				continue;
+			cout << "Bad input; Please enter a number: ";
+		}
+		revalue(factor, properties, size);
+		show_array(properties, size);
+	}
+	cout << "Done.\n";
+	cin.get();
 }
+
 void ch7_ex8(void)
 {
 }
