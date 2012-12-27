@@ -53,7 +53,12 @@ int main(void)
 	return 0;
 }
 	
-	
+
+double harmony(double x, double y)
+{
+	return 2.0*x*y/(x+y);
+}
+
 void ch7_ex1(void)
 {
 	double xval, yval;
@@ -70,6 +75,19 @@ void ch7_ex1(void)
 		cout << "Bring harmony to the digits: ";
 	}
 }
+
+int * golfread(const int arraysize)
+{
+	int * scores = new int[arraysize];
+	
+	cout << "Enter golf scores to be crunched\n#1: ";
+
+	for (int loop = 0; loop < arraysize && cin >> scores[loop]; ++loop)
+		cout << "#" << loop+1 << ": ";
+
+	return scores;
+}
+
 void ch7_ex2(void)
 {
 	const int arsize = 10;
@@ -476,22 +494,4 @@ void ch7_ex10(void)
 		cout << "Value 2: " << calculate(n, o, subtract) << endl;
 		cout << "Another\n";
 	}
-}
-
-
-double harmony(double x, double y)
-{
-	return 2.0*x*y/(x+y);
-}
-
-int * golfread(const int arraysize)
-{
-	int * scores = new int[arraysize];
-	
-	cout << "Enter golf scores to be crunched\n#1: ";
-
-	for (int loop = 0; loop < arraysize && cin >> scores[loop]; ++loop)
-		cout << "#" << loop+1 << ": ";
-
-	return scores;
 }
