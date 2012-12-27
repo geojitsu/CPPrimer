@@ -71,6 +71,16 @@ PUBLIC	?binary@?$_Iosb@H@std@@2W4_Openmode@12@B	; std::_Iosb<int>::binary
 PUBLIC	?beg@?$_Iosb@H@std@@2W4_Seekdir@12@B		; std::_Iosb<int>::beg
 PUBLIC	?cur@?$_Iosb@H@std@@2W4_Seekdir@12@B		; std::_Iosb<int>::cur
 PUBLIC	?end@?$_Iosb@H@std@@2W4_Seekdir@12@B		; std::_Iosb<int>::end
+CONST	SEGMENT
+_Seazon	DB	'Spring', 00H
+	ORG $+1
+	DB	'Summer', 00H
+	ORG $+1
+	DB	'Fall', 00H
+	ORG $+3
+	DB	'Winter', 00H
+	ORG $+1
+CONST	ENDS
 ;	COMDAT ?end@?$_Iosb@H@std@@2W4_Seekdir@12@B
 CONST	SEGMENT
 ?end@?$_Iosb@H@std@@2W4_Seekdir@12@B DD 02H		; std::_Iosb<int>::end
@@ -381,12 +391,12 @@ rtc$IMZ	ENDS
 ;	COMDAT _main
 _TEXT	SEGMENT
 tv81 = -232						; size = 4
-$T31111 = -224						; size = 4
-_choice$23441 = -20					; size = 4
+$T40243 = -224						; size = 4
+_choice$32230 = -20					; size = 4
 _chapter$ = -8						; size = 4
 _main	PROC						; COMDAT
 
-; 20   : {
+; 21   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -399,9 +409,9 @@ _main	PROC						; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 21   : 	int chapter;
-; 22   : 
-; 23   : 	cout << "Select exercise to debug, chump: ";
+; 22   : 	int chapter;
+; 23   : 
+; 24   : 	cout << "Select exercise to debug, chump: ";
 
 	push	OFFSET ??_C@_0CC@JLLNEAGF@Select?5exercise?5to?5debug?0?5chump?3@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -410,8 +420,8 @@ _main	PROC						; COMDAT
 	add	esp, 8
 $LN16@main:
 
-; 24   : 
-; 25   : 	while (cin >> chapter)
+; 25   : 
+; 26   : 	while (cin >> chapter)
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _chapter$[ebp]
@@ -420,10 +430,10 @@ $LN16@main:
 	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAH@Z
 	cmp	esi, esp
 	call	__RTC_CheckEsp
-	mov	DWORD PTR $T31111[ebp], eax
-	mov	ecx, DWORD PTR $T31111[ebp]
+	mov	DWORD PTR $T40243[ebp], eax
+	mov	ecx, DWORD PTR $T40243[ebp]
 	mov	edx, DWORD PTR [ecx]
-	mov	ecx, DWORD PTR $T31111[ebp]
+	mov	ecx, DWORD PTR $T40243[ebp]
 	add	ecx, DWORD PTR [edx+4]
 	mov	esi, esp
 	call	DWORD PTR __imp_??Bios_base@std@@QBEPAXXZ
@@ -432,8 +442,8 @@ $LN16@main:
 	test	eax, eax
 	je	$LN15@main
 
-; 26   : 	{
-; 27   : 		switch (chapter)
+; 27   : 	{
+; 28   : 		switch (chapter)
 
 	mov	eax, DWORD PTR _chapter$[ebp]
 	mov	DWORD PTR tv81[ebp], eax
@@ -447,23 +457,23 @@ $LN16@main:
 	jmp	DWORD PTR $LN24@main[eax*4]
 $LN12@main:
 
-; 28   : 		{
-; 29   : 			case 1: ch7_ex1(); break;
+; 29   : 		{
+; 30   : 			case 1: ch7_ex1(); break;
 
 	call	?ch7_ex1@@YAXXZ				; ch7_ex1
 	jmp	$LN13@main
 $LN11@main:
 
-; 30   : 			case 2: ch7_ex2(); break;
+; 31   : 			case 2: ch7_ex2(); break;
 
 	call	?ch7_ex2@@YAXXZ				; ch7_ex2
 	jmp	$LN13@main
 $LN10@main:
 
-; 31   : 			case 3: 
-; 32   : 				{
-; 33   : 					int choice;
-; 34   : 					cout << "Pass by (1)Value or (2)Address: ";
+; 32   : 			case 3: 
+; 33   : 				{
+; 34   : 					int choice;
+; 35   : 					cout << "Pass by (1)Value or (2)Address: ";
 
 	push	OFFSET ??_C@_0CB@NNMNFDDL@Pass?5by?5?$CI1?$CJValue?5or?5?$CI2?$CJAddress?3?5@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -471,73 +481,73 @@ $LN10@main:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 35   : 					cin >> choice;
+; 36   : 					cin >> choice;
 
 	mov	esi, esp
-	lea	eax, DWORD PTR _choice$23441[ebp]
+	lea	eax, DWORD PTR _choice$32230[ebp]
 	push	eax
 	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
 	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAH@Z
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 36   : 					ch7_ex3(choice); 
+; 37   : 					ch7_ex3(choice); 
 
-	mov	eax, DWORD PTR _choice$23441[ebp]
+	mov	eax, DWORD PTR _choice$32230[ebp]
 	push	eax
 	call	?ch7_ex3@@YAXH@Z			; ch7_ex3
 	add	esp, 4
 
-; 37   : 					break;
+; 38   : 					break;
 
 	jmp	SHORT $LN13@main
 $LN9@main:
 
-; 38   : 				}
-; 39   : 			case 4: ch7_ex4(); break;
+; 39   : 				}
+; 40   : 			case 4: ch7_ex4(); break;
 
 	call	?ch7_ex4@@YAXXZ				; ch7_ex4
 	jmp	SHORT $LN13@main
 $LN8@main:
 
-; 40   : 			case 5: ch7_ex5(); break;
+; 41   : 			case 5: ch7_ex5(); break;
 
 	call	?ch7_ex5@@YAXXZ				; ch7_ex5
 	jmp	SHORT $LN13@main
 $LN7@main:
 
-; 41   : 			case 6: ch7_ex6(); break;
+; 42   : 			case 6: ch7_ex6(); break;
 
 	call	?ch7_ex6@@YAXXZ				; ch7_ex6
 	jmp	SHORT $LN13@main
 $LN6@main:
 
-; 42   : 			case 7: ch7_ex7(); break;
+; 43   : 			case 7: ch7_ex7(); break;
 
 	call	?ch7_ex7@@YAXXZ				; ch7_ex7
 	jmp	SHORT $LN13@main
 $LN5@main:
 
-; 43   : 			case 8: ch7_ex8(); break;
+; 44   : 			case 8: ch7_ex8(); break;
 
 	call	?ch7_ex8@@YAXXZ				; ch7_ex8
 	jmp	SHORT $LN13@main
 $LN4@main:
 
-; 44   : 			case 9: ch7_ex9(); break;
+; 45   : 			case 9: ch7_ex9(); break;
 
 	call	?ch7_ex9@@YAXXZ				; ch7_ex9
 	jmp	SHORT $LN13@main
 $LN3@main:
 
-; 45   : 			case 10: ch7_ex10(); break;
+; 46   : 			case 10: ch7_ex10(); break;
 
 	call	?ch7_ex10@@YAXXZ			; ch7_ex10
 	jmp	SHORT $LN13@main
 $LN2@main:
 
-; 46   : 			case 'q':
-; 47   : 			case 'Q': cout << "Fare thee well!\n"; break;
+; 47   : 			case 'q':
+; 48   : 			case 'Q': cout << "Fare thee well!\n"; break;
 
 	push	OFFSET ??_C@_0BB@MECCMDLN@Fare?5thee?5well?$CB?6?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -547,7 +557,7 @@ $LN2@main:
 	jmp	SHORT $LN13@main
 $LN1@main:
 
-; 48   : 			default : cout << "Invalid, reselect\n";
+; 49   : 			default : cout << "Invalid, reselect\n";
 
 	push	OFFSET ??_C@_0BD@NNCHOOFB@Invalid?0?5reselect?6?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -556,8 +566,8 @@ $LN1@main:
 	add	esp, 8
 $LN13@main:
 
-; 49   : 		}
-; 50   : 		cout << "Select next exercise to debug, merci: ";
+; 50   : 		}
+; 51   : 		cout << "Select next exercise to debug, merci: ";
 
 	push	OFFSET ??_C@_0CH@LMKJBGPL@Select?5next?5exercise?5to?5debug?0?5m@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -565,16 +575,16 @@ $LN13@main:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 51   : 	}	
+; 52   : 	}	
 
 	jmp	$LN16@main
 $LN15@main:
 
-; 52   : 	return 0;
+; 53   : 	return 0;
 
 	xor	eax, eax
 
-; 53   : }
+; 54   : }
 
 	push	edx
 	mov	ecx, ebp
@@ -781,13 +791,13 @@ CONST	SEGMENT
 CONST	ENDS
 ;	COMDAT ?ch7_ex1@@YAXXZ
 _TEXT	SEGMENT
-$T31130 = -248						; size = 4
-_mean$23477 = -44					; size = 8
+$T40262 = -248						; size = 4
+_mean$32266 = -44					; size = 8
 _yval$ = -28						; size = 8
 _xval$ = -12						; size = 8
 ?ch7_ex1@@YAXXZ PROC					; ch7_ex1, COMDAT
 
-; 57   : {
+; 58   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -800,9 +810,9 @@ _xval$ = -12						; size = 8
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 58   : 	double xval, yval;
-; 59   : 	
-; 60   : 	cout << "Enter two values to be evaluated to harmony: ";
+; 59   : 	double xval, yval;
+; 60   : 	
+; 61   : 	cout << "Enter two values to be evaluated to harmony: ";
 
 	push	OFFSET ??_C@_0CO@IEFDGGAD@Enter?5two?5values?5to?5be?5evaluated@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -811,7 +821,7 @@ _xval$ = -12						; size = 8
 	add	esp, 8
 $LN3@ch7_ex1:
 
-; 61   : 	while ((cin >> xval >> yval))
+; 62   : 	while ((cin >> xval >> yval))
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _yval$[ebp]
@@ -827,10 +837,10 @@ $LN3@ch7_ex1:
 	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAN@Z
 	cmp	esi, esp
 	call	__RTC_CheckEsp
-	mov	DWORD PTR $T31130[ebp], eax
-	mov	edx, DWORD PTR $T31130[ebp]
+	mov	DWORD PTR $T40262[ebp], eax
+	mov	edx, DWORD PTR $T40262[ebp]
 	mov	eax, DWORD PTR [edx]
-	mov	ecx, DWORD PTR $T31130[ebp]
+	mov	ecx, DWORD PTR $T40262[ebp]
 	add	ecx, DWORD PTR [eax+4]
 	mov	esi, esp
 	call	DWORD PTR __imp_??Bios_base@std@@QBEPAXXZ
@@ -839,8 +849,8 @@ $LN3@ch7_ex1:
 	test	eax, eax
 	je	$LN2@ch7_ex1
 
-; 62   : 	{
-; 63   : 		if (xval == 0 && yval == 0)
+; 63   : 	{
+; 64   : 		if (xval == 0 && yval == 0)
 
 	fld	QWORD PTR _xval$[ebp]
 	fldz
@@ -855,13 +865,13 @@ $LN3@ch7_ex1:
 	test	ah, 68					; 00000044H
 	jp	SHORT $LN1@ch7_ex1
 
-; 64   : 			break;
+; 65   : 			break;
 
 	jmp	SHORT $LN2@ch7_ex1
 $LN1@ch7_ex1:
 
-; 65   : 
-; 66   : 		double mean = harmony(xval, yval);
+; 66   : 
+; 67   : 		double mean = harmony(xval, yval);
 
 	sub	esp, 8
 	fld	QWORD PTR _yval$[ebp]
@@ -871,17 +881,17 @@ $LN1@ch7_ex1:
 	fstp	QWORD PTR [esp]
 	call	?harmony@@YANNN@Z			; harmony
 	add	esp, 16					; 00000010H
-	fstp	QWORD PTR _mean$23477[ebp]
+	fstp	QWORD PTR _mean$32266[ebp]
 
-; 67   : 
-; 68   : 		cout << "Harmonic Mean: " << mean << endl;
+; 68   : 
+; 69   : 		cout << "Harmonic Mean: " << mean << endl;
 
 	mov	esi, esp
 	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
 	push	eax
 	mov	edi, esp
 	sub	esp, 8
-	fld	QWORD PTR _mean$23477[ebp]
+	fld	QWORD PTR _mean$32266[ebp]
 	fstp	QWORD PTR [esp]
 	push	OFFSET ??_C@_0BA@KAAKCAGP@Harmonic?5Mean?3?5?$AA@
 	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -897,7 +907,7 @@ $LN1@ch7_ex1:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 69   : 		cout << "Bring harmony to the digits: ";
+; 70   : 		cout << "Bring harmony to the digits: ";
 
 	push	OFFSET ??_C@_0BO@MMJKFGBI@Bring?5harmony?5to?5the?5digits?3?5?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -905,12 +915,12 @@ $LN1@ch7_ex1:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 70   : 	}
+; 71   : 	}
 
 	jmp	$LN3@ch7_ex1
 $LN2@ch7_ex1:
 
-; 71   : }
+; 72   : }
 
 	push	edx
 	mov	ecx, ebp
@@ -968,12 +978,12 @@ CONST	SEGMENT
 CONST	ENDS
 ;	COMDAT ?ch7_ex2@@YAXXZ
 _TEXT	SEGMENT
-_x$23508 = -32						; size = 4
+_x$32297 = -32						; size = 4
 _values$ = -20						; size = 4
 _arsize$ = -8						; size = 4
 ?ch7_ex2@@YAXXZ PROC					; ch7_ex2, COMDAT
 
-; 73   : {
+; 74   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -986,43 +996,43 @@ _arsize$ = -8						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 74   : 	const int arsize = 10;
+; 75   : 	const int arsize = 10;
 
 	mov	DWORD PTR _arsize$[ebp], 10		; 0000000aH
 
-; 75   : 
-; 76   : 	int * values = golfread(arsize);
+; 76   : 
+; 77   : 	int * values = golfread(arsize);
 
 	push	10					; 0000000aH
 	call	?golfread@@YAPAHH@Z			; golfread
 	add	esp, 4
 	mov	DWORD PTR _values$[ebp], eax
 
-; 77   : 
-; 78   : 	for (int x = 0; x < arsize; x++)
+; 78   : 
+; 79   : 	for (int x = 0; x < arsize; x++)
 
-	mov	DWORD PTR _x$23508[ebp], 0
+	mov	DWORD PTR _x$32297[ebp], 0
 	jmp	SHORT $LN3@ch7_ex2
 $LN2@ch7_ex2:
-	mov	eax, DWORD PTR _x$23508[ebp]
+	mov	eax, DWORD PTR _x$32297[ebp]
 	add	eax, 1
-	mov	DWORD PTR _x$23508[ebp], eax
+	mov	DWORD PTR _x$32297[ebp], eax
 $LN3@ch7_ex2:
-	cmp	DWORD PTR _x$23508[ebp], 10		; 0000000aH
+	cmp	DWORD PTR _x$32297[ebp], 10		; 0000000aH
 	jge	SHORT $LN4@ch7_ex2
 
-; 79   : 		cout << "#" << x+1 << ": " << values[x] << endl;
+; 80   : 		cout << "#" << x+1 << ": " << values[x] << endl;
 
 	mov	esi, esp
 	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
 	push	eax
 	mov	edi, esp
-	mov	ecx, DWORD PTR _x$23508[ebp]
+	mov	ecx, DWORD PTR _x$32297[ebp]
 	mov	edx, DWORD PTR _values$[ebp]
 	mov	eax, DWORD PTR [edx+ecx*4]
 	push	eax
 	push	OFFSET ??_C@_02LMMGGCAJ@?3?5?$AA@
-	mov	ecx, DWORD PTR _x$23508[ebp]
+	mov	ecx, DWORD PTR _x$32297[ebp]
 	add	ecx, 1
 	mov	ebx, esp
 	push	ecx
@@ -1049,7 +1059,7 @@ $LN3@ch7_ex2:
 	jmp	SHORT $LN2@ch7_ex2
 $LN4@ch7_ex2:
 
-; 80   : }
+; 81   : }
 
 	pop	edi
 	pop	esi
@@ -1107,7 +1117,7 @@ tv191 = -208						; size = 4
 _byval$ = 8						; size = 56
 ?vshowbox@@YAHUbox@@@Z PROC				; vshowbox, COMDAT
 
-; 91   : {
+; 92   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1120,7 +1130,7 @@ _byval$ = 8						; size = 56
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 92   : 	cout << "Box struct passed by value\n";
+; 93   : 	cout << "Box struct passed by value\n";
 
 	push	OFFSET ??_C@_0BM@IKHFKFPF@Box?5struct?5passed?5by?5value?6?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -1128,11 +1138,11 @@ _byval$ = 8						; size = 56
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 93   : 	cout << "Constructed by:\t" << byval.maker << endl
-; 94   : 		 << "Height:\t\t" << byval.height << endl
-; 95   : 		 << "Width:\t\t" << byval.width << endl
-; 96   : 		 << "Length:\t\t" << byval.length << endl
-; 97   : 		 << "Volume:\t\t" << byval.volume << endl;
+; 94   : 	cout << "Constructed by:\t" << byval.maker << endl
+; 95   : 		 << "Height:\t\t" << byval.height << endl
+; 96   : 		 << "Width:\t\t" << byval.width << endl
+; 97   : 		 << "Length:\t\t" << byval.length << endl
+; 98   : 		 << "Volume:\t\t" << byval.volume << endl;
 
 	mov	esi, esp
 	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
@@ -1240,12 +1250,12 @@ _byval$ = 8						; size = 56
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 98   : 
-; 99   : 	return 0;
+; 99   : 
+; 100  : 	return 0;
 
 	xor	eax, eax
 
-; 100  : } 
+; 101  : } 
 
 	push	edx
 	mov	ecx, ebp
@@ -1304,7 +1314,7 @@ tv199 = -196						; size = 4
 _byaddr$ = 8						; size = 4
 ?pshowbox@@YAHPBUbox@@@Z PROC				; pshowbox, COMDAT
 
-; 103  : {
+; 104  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1317,7 +1327,7 @@ _byaddr$ = 8						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 104  : 	cout << "Box struct passed by Pointer\n";
+; 105  : 	cout << "Box struct passed by Pointer\n";
 
 	push	OFFSET ??_C@_0BO@IDGAPBNN@Box?5struct?5passed?5by?5Pointer?6?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -1325,11 +1335,11 @@ _byaddr$ = 8						; size = 4
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 105  : 	cout << "Constructed by:\t" << byaddr->maker << endl
-; 106  : 		 << "Height:\t\t" << byaddr->height << endl
-; 107  : 		 << "Width:\t\t" << byaddr->width << endl
-; 108  : 		 << "Length:\t\t" << byaddr->length << endl
-; 109  : 		 << "Volume:\t\t" << byaddr->volume << endl;
+; 106  : 	cout << "Constructed by:\t" << byaddr->maker << endl
+; 107  : 		 << "Height:\t\t" << byaddr->height << endl
+; 108  : 		 << "Width:\t\t" << byaddr->width << endl
+; 109  : 		 << "Length:\t\t" << byaddr->length << endl
+; 110  : 		 << "Volume:\t\t" << byaddr->volume << endl;
 
 	mov	esi, esp
 	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
@@ -1441,12 +1451,12 @@ _byaddr$ = 8						; size = 4
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 110  : 	
-; 111  : 	return 0;
+; 111  : 	
+; 112  : 	return 0;
 
 	xor	eax, eax
 
-; 112  : }
+; 113  : }
 
 	pop	edi
 	pop	esi
@@ -1490,7 +1500,7 @@ __$ArrayPad$ = -4					; size = 4
 _choice$ = 8						; size = 4
 ?ch7_ex3@@YAXH@Z PROC					; ch7_ex3, COMDAT
 
-; 114  : {
+; 115  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1506,9 +1516,9 @@ _choice$ = 8						; size = 4
 	xor	eax, ebp
 	mov	DWORD PTR __$ArrayPad$[ebp], eax
 
-; 115  : 	box mybox =
-; 116  : 	{
-; 117  : 		"Jipeto",
+; 116  : 	box mybox =
+; 117  : 	{
+; 118  : 		"Jipeto",
 
 	mov	eax, DWORD PTR ??_C@_06OJKEAEDO@Jipeto?$AA@
 	mov	DWORD PTR _mybox$[ebp], eax
@@ -1527,36 +1537,36 @@ _choice$ = 8						; size = 4
 	mov	DWORD PTR _mybox$[ebp+35], eax
 	mov	BYTE PTR _mybox$[ebp+39], al
 
-; 118  : 		5.7,
+; 119  : 		5.7,
 
 	fld	DWORD PTR __real@40b66666
 	fstp	DWORD PTR _mybox$[ebp+40]
 
-; 119  : 		13.5,
+; 120  : 		13.5,
 
 	fld	DWORD PTR __real@41580000
 	fstp	DWORD PTR _mybox$[ebp+44]
 
-; 120  : 		18,
+; 121  : 		18,
 
 	fld	DWORD PTR __real@41900000
 	fstp	DWORD PTR _mybox$[ebp+48]
 
-; 121  : 		mybox.height * mybox.width * mybox.length
-; 122  : 	};
+; 122  : 		mybox.height * mybox.width * mybox.length
+; 123  : 	};
 
 	fld	DWORD PTR _mybox$[ebp+40]
 	fmul	DWORD PTR _mybox$[ebp+44]
 	fmul	DWORD PTR _mybox$[ebp+48]
 	fstp	DWORD PTR _mybox$[ebp+52]
 
-; 123  : 
-; 124  : 	if (choice == 1)
+; 124  : 
+; 125  : 	if (choice == 1)
 
 	cmp	DWORD PTR _choice$[ebp], 1
 	jne	SHORT $LN3@ch7_ex3
 
-; 125  : 		vshowbox(mybox);
+; 126  : 		vshowbox(mybox);
 
 	sub	esp, 56					; 00000038H
 	mov	ecx, 14					; 0000000eH
@@ -1568,12 +1578,12 @@ _choice$ = 8						; size = 4
 	jmp	SHORT $LN1@ch7_ex3
 $LN3@ch7_ex3:
 
-; 126  : 	else if (choice == 2)
+; 127  : 	else if (choice == 2)
 
 	cmp	DWORD PTR _choice$[ebp], 2
 	jne	SHORT $LN1@ch7_ex3
 
-; 127  : 		pshowbox(&mybox);
+; 128  : 		pshowbox(&mybox);
 
 	lea	eax, DWORD PTR _mybox$[ebp]
 	push	eax
@@ -1581,7 +1591,7 @@ $LN3@ch7_ex3:
 	add	esp, 4
 $LN1@ch7_ex3:
 
-; 128  : }
+; 129  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -1643,7 +1653,7 @@ _meganums$ = 16						; size = 4
 _megapicks$ = 20					; size = 4
 ?probability@@YAOIIII@Z PROC				; probability, COMDAT
 
-; 134  : {
+; 135  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1656,18 +1666,18 @@ _megapicks$ = 20					; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 135  : 	long double result, temp;
-; 136  : 	result = temp = 1.0;
+; 136  : 	long double result, temp;
+; 137  : 	result = temp = 1.0;
 
 	fld1
 	fstp	QWORD PTR _temp$[ebp]
 	fld	QWORD PTR _temp$[ebp]
 	fstp	QWORD PTR _result$[ebp]
 
-; 137  : 	long double n, mnums;
-; 138  : 	unsigned p, mpicks;
-; 139  : 
-; 140  : 	for (n = numbers, p = picks; p > 0; n--, p--)
+; 138  : 	long double n, mnums;
+; 139  : 	unsigned p, mpicks;
+; 140  : 
+; 141  : 	for (n = numbers, p = picks; p > 0; n--, p--)
 
 	mov	eax, DWORD PTR _numbers$[ebp]
 	mov	DWORD PTR tv82[ebp], eax
@@ -1688,7 +1698,7 @@ $LN6@probabilit:
 	cmp	DWORD PTR _p$[ebp], 0
 	jbe	SHORT $LN4@probabilit
 
-; 141  : 		result *= n/p;
+; 142  : 		result *= n/p;
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR tv89[ebp], eax
@@ -1700,8 +1710,8 @@ $LN6@probabilit:
 	jmp	SHORT $LN5@probabilit
 $LN4@probabilit:
 
-; 142  : 
-; 143  : 	for (mnums = meganums, mpicks = megapicks; megapicks > 0; meganums--, megapicks--)
+; 143  : 
+; 144  : 	for (mnums = meganums, mpicks = megapicks; megapicks > 0; meganums--, megapicks--)
 
 	mov	eax, DWORD PTR _meganums$[ebp]
 	mov	DWORD PTR tv95[ebp], eax
@@ -1722,7 +1732,7 @@ $LN3@probabilit:
 	cmp	DWORD PTR _megapicks$[ebp], 0
 	jbe	SHORT $LN1@probabilit
 
-; 144  : 		temp *= meganums/megapicks;
+; 145  : 		temp *= meganums/megapicks;
 
 	mov	eax, DWORD PTR _meganums$[ebp]
 	xor	edx, edx
@@ -1735,19 +1745,19 @@ $LN3@probabilit:
 	jmp	SHORT $LN2@probabilit
 $LN1@probabilit:
 
-; 145  : 
-; 146  : 	result *= temp;
+; 146  : 
+; 147  : 	result *= temp;
 
 	fld	QWORD PTR _result$[ebp]
 	fmul	QWORD PTR _temp$[ebp]
 	fstp	QWORD PTR _result$[ebp]
 
-; 147  : 
-; 148  : 	return result;
+; 148  : 
+; 149  : 	return result;
 
 	fld	QWORD PTR _result$[ebp]
 
-; 149  : }
+; 150  : }
 
 	pop	edi
 	pop	esi
@@ -1804,14 +1814,14 @@ tv179 = -286						; size = 2
 tv176 = -284						; size = 8
 tv174 = -276						; size = 4
 tv171 = -270						; size = 2
-$T31168 = -264						; size = 4
+$T40300 = -264						; size = 4
 _megachoices$ = -60					; size = 8
 _megatotal$ = -44					; size = 8
 _choices$ = -28						; size = 8
 _total$ = -12						; size = 8
 ?ch7_ex4@@YAXXZ PROC					; ch7_ex4, COMDAT
 
-; 151  : {
+; 152  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1824,9 +1834,9 @@ _total$ = -12						; size = 8
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 152  : 	double total, choices, megatotal, megachoices;
-; 153  : 	cout << "Enter the total number of choices on the game card and\n"
-; 154  : 			"the number of picks allowed:\n";
+; 153  : 	double total, choices, megatotal, megachoices;
+; 154  : 	cout << "Enter the total number of choices on the game card and\n"
+; 155  : 			"the number of picks allowed:\n";
 
 	push	OFFSET ??_C@_0FF@JEIFIGFL@Enter?5the?5total?5number?5of?5choice@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -1835,8 +1845,8 @@ _total$ = -12						; size = 8
 	add	esp, 8
 $LN2@ch7_ex4:
 
-; 155  : 
-; 156  : 	while ((cin >> total >> choices) && choices <= total)
+; 156  : 
+; 157  : 	while ((cin >> total >> choices) && choices <= total)
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _choices$[ebp]
@@ -1852,10 +1862,10 @@ $LN2@ch7_ex4:
 	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAN@Z
 	cmp	esi, esp
 	call	__RTC_CheckEsp
-	mov	DWORD PTR $T31168[ebp], eax
-	mov	edx, DWORD PTR $T31168[ebp]
+	mov	DWORD PTR $T40300[ebp], eax
+	mov	edx, DWORD PTR $T40300[ebp]
 	mov	eax, DWORD PTR [edx]
-	mov	ecx, DWORD PTR $T31168[ebp]
+	mov	ecx, DWORD PTR $T40300[ebp]
 	add	ecx, DWORD PTR [eax+4]
 	mov	esi, esp
 	call	DWORD PTR __imp_??Bios_base@std@@QBEPAXXZ
@@ -1869,9 +1879,9 @@ $LN2@ch7_ex4:
 	test	ah, 1
 	jne	$LN1@ch7_ex4
 
-; 157  : 	{
-; 158  : 		cout << "Now enter the number of Powerball choices and\n"
-; 159  : 				"the number of picks allowed:\n";
+; 158  : 	{
+; 159  : 		cout << "Now enter the number of Powerball choices and\n"
+; 160  : 				"the number of picks allowed:\n";
 
 	push	OFFSET ??_C@_0EM@JFFJPFPB@Now?5enter?5the?5number?5of?5Powerbal@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -1879,8 +1889,8 @@ $LN2@ch7_ex4:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 160  : 
-; 161  : 		cin >> megatotal >> megachoices;
+; 161  : 
+; 162  : 		cin >> megatotal >> megachoices;
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _megachoices$[ebp]
@@ -1897,8 +1907,8 @@ $LN2@ch7_ex4:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 162  : 
-; 163  : 		cout << "You have one chance in ";
+; 163  : 
+; 164  : 		cout << "You have one chance in ";
 
 	push	OFFSET ??_C@_0BI@CEBPDKGP@You?5have?5one?5chance?5in?5?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -1906,7 +1916,7 @@ $LN2@ch7_ex4:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 164  : 		cout << probability(total, choices, megatotal, megachoices);
+; 165  : 		cout << probability(total, choices, megatotal, megachoices);
 
 	fld	QWORD PTR _megachoices$[ebp]
 	fnstcw	WORD PTR tv171[ebp]
@@ -1958,7 +1968,7 @@ $LN2@ch7_ex4:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 165  : 		cout << " of winning.\n";
+; 166  : 		cout << " of winning.\n";
 
 	push	OFFSET ??_C@_0O@BGNJEAPP@?5of?5winning?4?6?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -1966,7 +1976,7 @@ $LN2@ch7_ex4:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 166  : 		cout << "Next two numbers (q to quit): ";
+; 167  : 		cout << "Next two numbers (q to quit): ";
 
 	push	OFFSET ??_C@_0BP@HHBDPGAC@Next?5two?5numbers?5?$CIq?5to?5quit?$CJ?3?5?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -1974,12 +1984,12 @@ $LN2@ch7_ex4:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 167  : 	}
+; 168  : 	}
 
 	jmp	$LN2@ch7_ex4
 $LN1@ch7_ex4:
 
-; 168  : }
+; 169  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -2064,7 +2074,7 @@ _factor$ = 8						; size = 4
 _pf$ = 12						; size = 4
 ?factorial@@YAXHPAH@Z PROC				; factorial, COMDAT
 
-; 172  : {
+; 173  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2077,8 +2087,8 @@ _pf$ = 12						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 173  : 	int temp, result;
-; 174  : 	*pf = *pf * factor;
+; 174  : 	int temp, result;
+; 175  : 	*pf = *pf * factor;
 
 	mov	eax, DWORD PTR _pf$[ebp]
 	mov	ecx, DWORD PTR [eax]
@@ -2086,12 +2096,12 @@ _pf$ = 12						; size = 4
 	mov	edx, DWORD PTR _pf$[ebp]
 	mov	DWORD PTR [edx], ecx
 
-; 175  : 	if (factor > 1)
+; 176  : 	if (factor > 1)
 
 	cmp	DWORD PTR _factor$[ebp], 1
 	jle	SHORT $LN2@factorial
 
-; 176  : 		factorial(factor-1, pf);
+; 177  : 		factorial(factor-1, pf);
 
 	mov	eax, DWORD PTR _pf$[ebp]
 	push	eax
@@ -2102,9 +2112,9 @@ _pf$ = 12						; size = 4
 	add	esp, 8
 $LN2@factorial:
 
-; 177  : 
-; 178  : 	//return result;
-; 179  : }
+; 178  : 
+; 179  : 	//return result;
+; 180  : }
 
 	pop	edi
 	pop	esi
@@ -2131,7 +2141,7 @@ _result$ = -20						; size = 4
 _factorme$ = -8						; size = 4
 ?ch7_ex5@@YAXXZ PROC					; ch7_ex5, COMDAT
 
-; 181  : {
+; 182  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2144,21 +2154,21 @@ _factorme$ = -8						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 182  : 	int factorme = 6;
+; 183  : 	int factorme = 6;
 
 	mov	DWORD PTR _factorme$[ebp], 6
 
-; 183  : 	int result = 1;
+; 184  : 	int result = 1;
 
 	mov	DWORD PTR _result$[ebp], 1
 
-; 184  : 	int * presult = &result;
+; 185  : 	int * presult = &result;
 
 	lea	eax, DWORD PTR _result$[ebp]
 	mov	DWORD PTR _presult$[ebp], eax
 
-; 185  : 
-; 186  : 	factorial(factorme, presult);
+; 186  : 
+; 187  : 	factorial(factorme, presult);
 
 	mov	eax, DWORD PTR _presult$[ebp]
 	push	eax
@@ -2167,8 +2177,8 @@ _factorme$ = -8						; size = 4
 	call	?factorial@@YAXHPAH@Z			; factorial
 	add	esp, 8
 
-; 187  : 
-; 188  : 	cout << factorme << "! = " << *presult << endl << endl;
+; 188  : 
+; 189  : 	cout << factorme << "! = " << *presult << endl << endl;
 
 	mov	esi, esp
 	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
@@ -2206,7 +2216,7 @@ _factorme$ = -8						; size = 4
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 189  : }
+; 190  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -2251,14 +2261,14 @@ CONST	SEGMENT
 CONST	ENDS
 ;	COMDAT ?fill_array@@YAHPANH@Z
 _TEXT	SEGMENT
-$T31184 = -224						; size = 4
-$T31185 = -212						; size = 4
+$T40316 = -224						; size = 4
+$T40317 = -212						; size = 4
 _loop$ = -8						; size = 4
 _input$ = 8						; size = 4
 _size$ = 12						; size = 4
 ?fill_array@@YAHPANH@Z PROC				; fill_array, COMDAT
 
-; 192  : {
+; 193  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2271,11 +2281,11 @@ _size$ = 12						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 193  : 	int loop = 0;
+; 194  : 	int loop = 0;
 
 	mov	DWORD PTR _loop$[ebp], 0
 
-; 194  : 	cout << "Enter a bunch of double values, ya fairy\n";
+; 195  : 	cout << "Enter a bunch of double values, ya fairy\n";
 
 	push	OFFSET ??_C@_0CK@GNFCMEHN@Enter?5a?5bunch?5of?5double?5values?0?5@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -2285,8 +2295,8 @@ _size$ = 12						; size = 4
 	jmp	SHORT $LN3@fill_array
 $LN2@fill_array:
 
-; 195  : 			
-; 196  : 	for (; loop < size && cout << "#" << loop+1 << ": " && cin >> input[loop]; loop++)
+; 196  : 			
+; 197  : 	for (; loop < size && cout << "#" << loop+1 << ": " && cin >> input[loop]; loop++)
 
 	mov	eax, DWORD PTR _loop$[ebp]
 	add	eax, 1
@@ -2312,10 +2322,10 @@ $LN3@fill_array:
 	push	eax
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
-	mov	DWORD PTR $T31184[ebp], eax
-	mov	edx, DWORD PTR $T31184[ebp]
+	mov	DWORD PTR $T40316[ebp], eax
+	mov	edx, DWORD PTR $T40316[ebp]
 	mov	eax, DWORD PTR [edx]
-	mov	ecx, DWORD PTR $T31184[ebp]
+	mov	ecx, DWORD PTR $T40316[ebp]
 	add	ecx, DWORD PTR [eax+4]
 	mov	esi, esp
 	call	DWORD PTR __imp_??Bios_base@std@@QBEPAXXZ
@@ -2332,10 +2342,10 @@ $LN3@fill_array:
 	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAN@Z
 	cmp	esi, esp
 	call	__RTC_CheckEsp
-	mov	DWORD PTR $T31185[ebp], eax
-	mov	eax, DWORD PTR $T31185[ebp]
+	mov	DWORD PTR $T40317[ebp], eax
+	mov	eax, DWORD PTR $T40317[ebp]
 	mov	ecx, DWORD PTR [eax]
-	mov	edx, DWORD PTR $T31185[ebp]
+	mov	edx, DWORD PTR $T40317[ebp]
 	add	edx, DWORD PTR [ecx+4]
 	mov	esi, esp
 	mov	ecx, edx
@@ -2345,12 +2355,12 @@ $LN3@fill_array:
 	test	eax, eax
 	je	SHORT $LN1@fill_array
 
-; 197  : 		;
+; 198  : 		;
 
 	jmp	$LN2@fill_array
 $LN1@fill_array:
 
-; 198  : 	cout << endl;
+; 199  : 	cout << endl;
 
 	mov	esi, esp
 	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
@@ -2360,11 +2370,11 @@ $LN1@fill_array:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 199  : 	return loop;
+; 200  : 	return loop;
 
 	mov	eax, DWORD PTR _loop$[ebp]
 
-; 200  : }
+; 201  : }
 
 	pop	edi
 	pop	esi
@@ -2391,7 +2401,7 @@ _input$ = 8						; size = 4
 _size$ = 12						; size = 4
 ?show_array@@YAHPBNH@Z PROC				; show_array, COMDAT
 
-; 203  : {
+; 204  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2404,20 +2414,20 @@ _size$ = 12						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 204  : 	int loop = 0;
+; 205  : 	int loop = 0;
 
 	mov	DWORD PTR _loop$[ebp], 0
 $LN2@show_array:
 
-; 205  : 
-; 206  : 	while (loop < size)
+; 206  : 
+; 207  : 	while (loop < size)
 
 	mov	eax, DWORD PTR _loop$[ebp]
 	cmp	eax, DWORD PTR _size$[ebp]
 	jge	SHORT $LN1@show_array
 
-; 207  : 	{
-; 208  : 		cout << "Array Element #" << loop+1 << ": " << input[loop] << endl;
+; 208  : 	{
+; 209  : 		cout << "Array Element #" << loop+1 << ": " << input[loop] << endl;
 
 	mov	esi, esp
 	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
@@ -2454,23 +2464,23 @@ $LN2@show_array:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 209  : 		loop++;
+; 210  : 		loop++;
 
 	mov	eax, DWORD PTR _loop$[ebp]
 	add	eax, 1
 	mov	DWORD PTR _loop$[ebp], eax
 
-; 210  : 	}
+; 211  : 	}
 
 	jmp	$LN2@show_array
 $LN1@show_array:
 
-; 211  : 	
-; 212  : 	return 0;
+; 212  : 	
+; 213  : 	return 0;
 
 	xor	eax, eax
 
-; 213  : }
+; 214  : }
 
 	pop	edi
 	pop	esi
@@ -2494,7 +2504,7 @@ _da$ = 8						; size = 4
 _asize$ = 12						; size = 4
 ?Reverse_array@@YAXQANH@Z PROC				; Reverse_array, COMDAT
 
-; 217  : {
+; 218  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2507,40 +2517,40 @@ _asize$ = 12						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 218  : 	double tempo;
-; 219  : 	int countr = 0;
+; 219  : 	double tempo;
+; 220  : 	int countr = 0;
 
 	mov	DWORD PTR _countr$[ebp], 0
 
-; 220  : 	int newsize = asize;
+; 221  : 	int newsize = asize;
 
 	mov	eax, DWORD PTR _asize$[ebp]
 	mov	DWORD PTR _newsize$[ebp], eax
 
-; 221  : 
-; 222  : 	asize--;
+; 222  : 
+; 223  : 	asize--;
 
 	mov	eax, DWORD PTR _asize$[ebp]
 	sub	eax, 1
 	mov	DWORD PTR _asize$[ebp], eax
 $LN2@Reverse_ar:
 
-; 223  : 
-; 224  : 	while(countr < asize)
+; 224  : 
+; 225  : 	while(countr < asize)
 
 	mov	eax, DWORD PTR _countr$[ebp]
 	cmp	eax, DWORD PTR _asize$[ebp]
 	jge	SHORT $LN1@Reverse_ar
 
-; 225  : 	{
-; 226  : 		tempo = da[countr];
+; 226  : 	{
+; 227  : 		tempo = da[countr];
 
 	mov	eax, DWORD PTR _countr$[ebp]
 	mov	ecx, DWORD PTR _da$[ebp]
 	fld	QWORD PTR [ecx+eax*8]
 	fstp	QWORD PTR _tempo$[ebp]
 
-; 227  : 		da[countr++] = da[asize];
+; 228  : 		da[countr++] = da[asize];
 
 	mov	eax, DWORD PTR _countr$[ebp]
 	mov	ecx, DWORD PTR _da$[ebp]
@@ -2552,7 +2562,7 @@ $LN2@Reverse_ar:
 	add	eax, 1
 	mov	DWORD PTR _countr$[ebp], eax
 
-; 228  : 		da[asize--] = tempo;
+; 229  : 		da[asize--] = tempo;
 
 	mov	eax, DWORD PTR _asize$[ebp]
 	mov	ecx, DWORD PTR _da$[ebp]
@@ -2562,14 +2572,14 @@ $LN2@Reverse_ar:
 	sub	edx, 1
 	mov	DWORD PTR _asize$[ebp], edx
 
-; 229  : 	}
+; 230  : 	}
 
 	jmp	SHORT $LN2@Reverse_ar
 $LN1@Reverse_ar:
 
-; 230  : 
-; 231  : 	//show_array(da, newsize);
-; 232  : }
+; 231  : 
+; 232  : 	//show_array(da, newsize);
+; 233  : }
 
 	pop	edi
 	pop	esi
@@ -2602,7 +2612,7 @@ _arraysize$ = -12					; size = 4
 __$ArrayPad$ = -4					; size = 4
 ?ch7_ex6@@YAXXZ PROC					; ch7_ex6, COMDAT
 
-; 235  : {
+; 236  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2618,20 +2628,20 @@ __$ArrayPad$ = -4					; size = 4
 	xor	eax, ebp
 	mov	DWORD PTR __$ArrayPad$[ebp], eax
 
-; 236  : 	const int arraysize = 5;
+; 237  : 	const int arraysize = 5;
 
 	mov	DWORD PTR _arraysize$[ebp], 5
 
-; 237  : 	int numberEntered, numsReturned;
-; 238  : 	numberEntered = numsReturned = 0;
+; 238  : 	int numberEntered, numsReturned;
+; 239  : 	numberEntered = numsReturned = 0;
 
 	mov	DWORD PTR _numsReturned$[ebp], 0
 	mov	eax, DWORD PTR _numsReturned$[ebp]
 	mov	DWORD PTR _numberEntered$[ebp], eax
 
-; 239  : 	double theArray[arraysize];
-; 240  : 
-; 241  : 	numberEntered = fill_array(theArray, arraysize);
+; 240  : 	double theArray[arraysize];
+; 241  : 
+; 242  : 	numberEntered = fill_array(theArray, arraysize);
 
 	push	5
 	lea	eax, DWORD PTR _theArray$[ebp]
@@ -2640,7 +2650,7 @@ __$ArrayPad$ = -4					; size = 4
 	add	esp, 8
 	mov	DWORD PTR _numberEntered$[ebp], eax
 
-; 242  : 	numsReturned = show_array(theArray, numberEntered);
+; 243  : 	numsReturned = show_array(theArray, numberEntered);
 
 	mov	eax, DWORD PTR _numberEntered$[ebp]
 	push	eax
@@ -2650,7 +2660,7 @@ __$ArrayPad$ = -4					; size = 4
 	add	esp, 8
 	mov	DWORD PTR _numsReturned$[ebp], eax
 
-; 243  : 	cout << "Reverse array...HOOO-OOOH\n\n";
+; 244  : 	cout << "Reverse array...HOOO-OOOH\n\n";
 
 	push	OFFSET ??_C@_0BM@BGKNBDPL@Reverse?5array?4?4?4HOOO?9OOOH?6?6?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -2658,7 +2668,7 @@ __$ArrayPad$ = -4					; size = 4
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 244  : 	Reverse_array(theArray, numberEntered);
+; 245  : 	Reverse_array(theArray, numberEntered);
 
 	mov	eax, DWORD PTR _numberEntered$[ebp]
 	push	eax
@@ -2667,7 +2677,7 @@ __$ArrayPad$ = -4					; size = 4
 	call	?Reverse_array@@YAXQANH@Z		; Reverse_array
 	add	esp, 8
 
-; 245  : 	show_array(theArray, numberEntered);
+; 246  : 	show_array(theArray, numberEntered);
 
 	mov	eax, DWORD PTR _numberEntered$[ebp]
 	push	eax
@@ -2676,7 +2686,7 @@ __$ArrayPad$ = -4					; size = 4
 	call	?show_array@@YAHPBNH@Z			; show_array
 	add	esp, 8
 
-; 246  : 	cout << "Double Reverse ... Yooo-oooh!\n\n";
+; 247  : 	cout << "Double Reverse ... Yooo-oooh!\n\n";
 
 	push	OFFSET ??_C@_0CA@CDFAFOFP@Double?5Reverse?5?4?4?4?5Yooo?9oooh?$CB?6?6?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -2684,7 +2694,7 @@ __$ArrayPad$ = -4					; size = 4
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 247  : 	Reverse_array(theArray, numberEntered);
+; 248  : 	Reverse_array(theArray, numberEntered);
 
 	mov	eax, DWORD PTR _numberEntered$[ebp]
 	push	eax
@@ -2693,7 +2703,7 @@ __$ArrayPad$ = -4					; size = 4
 	call	?Reverse_array@@YAXQANH@Z		; Reverse_array
 	add	esp, 8
 
-; 248  : 	show_array(theArray, numberEntered);
+; 249  : 	show_array(theArray, numberEntered);
 
 	mov	eax, DWORD PTR _numberEntered$[ebp]
 	push	eax
@@ -2702,7 +2712,7 @@ __$ArrayPad$ = -4					; size = 4
 	call	?show_array@@YAHPBNH@Z			; show_array
 	add	esp, 8
 
-; 249  : 	cout << "Double Reverse ... Yooo-oooh!\n\n";
+; 250  : 	cout << "Double Reverse ... Yooo-oooh!\n\n";
 
 	push	OFFSET ??_C@_0CA@CDFAFOFP@Double?5Reverse?5?4?4?4?5Yooo?9oooh?$CB?6?6?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -2710,7 +2720,7 @@ __$ArrayPad$ = -4					; size = 4
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 250  : 	Reverse_array(theArray+1, numberEntered-2);
+; 251  : 	Reverse_array(theArray+1, numberEntered-2);
 
 	mov	eax, DWORD PTR _numberEntered$[ebp]
 	sub	eax, 2
@@ -2720,7 +2730,7 @@ __$ArrayPad$ = -4					; size = 4
 	call	?Reverse_array@@YAXQANH@Z		; Reverse_array
 	add	esp, 8
 
-; 251  : 	show_array(theArray, numberEntered);
+; 252  : 	show_array(theArray, numberEntered);
 
 	mov	eax, DWORD PTR _numberEntered$[ebp]
 	push	eax
@@ -2729,7 +2739,7 @@ __$ArrayPad$ = -4					; size = 4
 	call	?show_array@@YAHPBNH@Z			; show_array
 	add	esp, 8
 
-; 252  : }
+; 253  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -2794,7 +2804,7 @@ _arStart$ = 8						; size = 4
 _arEnd$ = 12						; size = 4
 ?fill_array@@YAPANPAN0@Z PROC				; fill_array, COMDAT
 
-; 256  : {
+; 257  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2807,22 +2817,22 @@ _arEnd$ = 12						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 257  : 	using namespace std;
-; 258  : 	double temp;
-; 259  : 	int i = 0;
+; 258  : 	using namespace std;
+; 259  : 	double temp;
+; 260  : 	int i = 0;
 
 	mov	DWORD PTR _i$[ebp], 0
 $LN7@fill_array@2:
 
-; 260  : 
-; 261  : 	while ( arStart != arEnd )
+; 261  : 
+; 262  : 	while ( arStart != arEnd )
 
 	mov	eax, DWORD PTR _arStart$[ebp]
 	cmp	eax, DWORD PTR _arEnd$[ebp]
 	je	$LN6@fill_array@2
 
-; 262  : 	{
-; 263  : 		cout << "Enter value #" << (i + 1) << ": ";
+; 263  : 	{
+; 264  : 		cout << "Enter value #" << (i + 1) << ": ";
 
 	push	OFFSET ??_C@_02LMMGGCAJ@?3?5?$AA@
 	mov	eax, DWORD PTR _i$[ebp]
@@ -2842,7 +2852,7 @@ $LN7@fill_array@2:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 264  : 		cin >> temp;
+; 265  : 		cin >> temp;
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _temp$[ebp]
@@ -2852,7 +2862,7 @@ $LN7@fill_array@2:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 265  : 		if (!cin)
+; 266  : 		if (!cin)
 
 	mov	eax, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
 	mov	ecx, DWORD PTR [eax]
@@ -2867,8 +2877,8 @@ $LN7@fill_array@2:
 	test	eax, eax
 	je	SHORT $LN5@fill_array@2
 
-; 266  : 		{
-; 267  : 			cin.clear();
+; 267  : 		{
+; 268  : 			cin.clear();
 
 	mov	esi, esp
 	push	0
@@ -2883,7 +2893,7 @@ $LN7@fill_array@2:
 	call	__RTC_CheckEsp
 $LN4@fill_array@2:
 
-; 268  : 			while (cin.get() != '\n')
+; 269  : 			while (cin.get() != '\n')
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
@@ -2893,13 +2903,13 @@ $LN4@fill_array@2:
 	cmp	eax, 10					; 0000000aH
 	je	SHORT $LN3@fill_array@2
 
-; 269  : 				continue;
+; 270  : 				continue;
 
 	jmp	SHORT $LN4@fill_array@2
 	jmp	SHORT $LN4@fill_array@2
 $LN3@fill_array@2:
 
-; 270  : 			cout << "Bad input; input process terminated.\n";
+; 271  : 			cout << "Bad input; input process terminated.\n";
 
 	push	OFFSET ??_C@_0CG@DIMADAEJ@Bad?5input?$DL?5input?5process?5termina@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -2907,14 +2917,14 @@ $LN3@fill_array@2:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 271  : 			break;
+; 272  : 			break;
 
 	jmp	SHORT $LN6@fill_array@2
 	jmp	SHORT $LN1@fill_array@2
 $LN5@fill_array@2:
 
-; 272  : 		}
-; 273  : 		else if (temp < 0)
+; 273  : 		}
+; 274  : 		else if (temp < 0)
 
 	fldz
 	fcomp	QWORD PTR _temp$[ebp]
@@ -2922,12 +2932,12 @@ $LN5@fill_array@2:
 	test	ah, 65					; 00000041H
 	jne	SHORT $LN1@fill_array@2
 
-; 274  : 			break;
+; 275  : 			break;
 
 	jmp	SHORT $LN6@fill_array@2
 $LN1@fill_array@2:
 
-; 275  : 		*(arStart++) = temp;
+; 276  : 		*(arStart++) = temp;
 
 	mov	eax, DWORD PTR _arStart$[ebp]
 	fld	QWORD PTR _temp$[ebp]
@@ -2936,22 +2946,22 @@ $LN1@fill_array@2:
 	add	ecx, 8
 	mov	DWORD PTR _arStart$[ebp], ecx
 
-; 276  : 		i++;
+; 277  : 		i++;
 
 	mov	eax, DWORD PTR _i$[ebp]
 	add	eax, 1
 	mov	DWORD PTR _i$[ebp], eax
 
-; 277  : 	}
+; 278  : 	}
 
 	jmp	$LN7@fill_array@2
 $LN6@fill_array@2:
 
-; 278  : 	return arStart;
+; 279  : 	return arStart;
 
 	mov	eax, DWORD PTR _arStart$[ebp]
 
-; 279  : }
+; 280  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -2995,12 +3005,12 @@ CONST	ENDS
 ;	COMDAT ?show_array@@YAXPBN0@Z
 _TEXT	SEGMENT
 tv78 = -212						; size = 8
-_i$23806 = -8						; size = 4
+_i$32595 = -8						; size = 4
 _aStart$ = 8						; size = 4
 _aEnd$ = 12						; size = 4
 ?show_array@@YAXPBN0@Z PROC				; show_array, COMDAT
 
-; 283  : {
+; 284  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3013,25 +3023,25 @@ _aEnd$ = 12						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 284  : 	
-; 285  : 	for (int i = 0; aStart < aEnd; i++)
+; 285  : 	
+; 286  : 	for (int i = 0; aStart < aEnd; i++)
 
-	mov	DWORD PTR _i$23806[ebp], 0
+	mov	DWORD PTR _i$32595[ebp], 0
 	jmp	SHORT $LN3@show_array@2
 $LN2@show_array@2:
-	mov	eax, DWORD PTR _i$23806[ebp]
+	mov	eax, DWORD PTR _i$32595[ebp]
 	add	eax, 1
-	mov	DWORD PTR _i$23806[ebp], eax
+	mov	DWORD PTR _i$32595[ebp], eax
 $LN3@show_array@2:
 	mov	eax, DWORD PTR _aStart$[ebp]
 	cmp	eax, DWORD PTR _aEnd$[ebp]
 	jae	$LN1@show_array@2
 
-; 286  : 	{
-; 287  : 		cout << "Property #" << (i + 1) << ": ";
+; 287  : 	{
+; 288  : 		cout << "Property #" << (i + 1) << ": ";
 
 	push	OFFSET ??_C@_02LMMGGCAJ@?3?5?$AA@
-	mov	eax, DWORD PTR _i$23806[ebp]
+	mov	eax, DWORD PTR _i$32595[ebp]
 	add	eax, 1
 	mov	esi, esp
 	push	eax
@@ -3048,7 +3058,7 @@ $LN3@show_array@2:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 288  : 		cout << *(aStart++) << endl;
+; 289  : 		cout << *(aStart++) << endl;
 
 	mov	eax, DWORD PTR _aStart$[ebp]
 	fld	QWORD PTR [eax]
@@ -3072,12 +3082,12 @@ $LN3@show_array@2:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 289  : 	}
+; 290  : 	}
 
 	jmp	$LN2@show_array@2
 $LN1@show_array@2:
 
-; 290  : }
+; 291  : }
 
 	pop	edi
 	pop	esi
@@ -3094,13 +3104,13 @@ PUBLIC	?revalue@@YAXNPAN0@Z				; revalue
 ; Function compile flags: /Odtp /RTCsu /ZI
 ;	COMDAT ?revalue@@YAXNPAN0@Z
 _TEXT	SEGMENT
-_i$23824 = -8						; size = 4
+_i$32613 = -8						; size = 4
 _r$ = 8							; size = 8
 _aStart$ = 16						; size = 4
 _aEnd$ = 20						; size = 4
 ?revalue@@YAXNPAN0@Z PROC				; revalue, COMDAT
 
-; 294  : {
+; 295  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3113,20 +3123,20 @@ _aEnd$ = 20						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 295  : 	for (int i = 0; aStart < aEnd; i++)
+; 296  : 	for (int i = 0; aStart < aEnd; i++)
 
-	mov	DWORD PTR _i$23824[ebp], 0
+	mov	DWORD PTR _i$32613[ebp], 0
 	jmp	SHORT $LN3@revalue
 $LN2@revalue:
-	mov	eax, DWORD PTR _i$23824[ebp]
+	mov	eax, DWORD PTR _i$32613[ebp]
 	add	eax, 1
-	mov	DWORD PTR _i$23824[ebp], eax
+	mov	DWORD PTR _i$32613[ebp], eax
 $LN3@revalue:
 	mov	eax, DWORD PTR _aStart$[ebp]
 	cmp	eax, DWORD PTR _aEnd$[ebp]
 	jae	SHORT $LN1@revalue
 
-; 296  : 		*(aStart++) *= r;
+; 297  : 		*(aStart++) *= r;
 
 	mov	eax, DWORD PTR _aStart$[ebp]
 	fld	QWORD PTR [eax]
@@ -3139,7 +3149,7 @@ $LN3@revalue:
 	jmp	SHORT $LN2@revalue
 $LN1@revalue:
 
-; 297  : }
+; 298  : }
 
 	pop	edi
 	pop	esi
@@ -3170,15 +3180,15 @@ CONST	SEGMENT
 CONST	ENDS
 ;	COMDAT ?ch7_ex7@@YAXXZ
 _TEXT	SEGMENT
-$T31208 = -292						; size = 4
-_factor$23836 = -88					; size = 8
+$T40340 = -292						; size = 4
+_factor$32625 = -88					; size = 8
 _size$ = -72						; size = 4
 _properties$ = -60					; size = 40
 _Max$ = -12						; size = 4
 __$ArrayPad$ = -4					; size = 4
 ?ch7_ex7@@YAXXZ PROC					; ch7_ex7, COMDAT
 
-; 300  : {
+; 301  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3194,13 +3204,13 @@ __$ArrayPad$ = -4					; size = 4
 	xor	eax, ebp
 	mov	DWORD PTR __$ArrayPad$[ebp], eax
 
-; 301  : 	const int Max = 5;
+; 302  : 	const int Max = 5;
 
 	mov	DWORD PTR _Max$[ebp], 5
 
-; 302  : 	double properties[Max];
-; 303  : 
-; 304  : 	double * size = fill_array(properties, properties+Max);
+; 303  : 	double properties[Max];
+; 304  : 
+; 305  : 	double * size = fill_array(properties, properties+Max);
 
 	lea	eax, DWORD PTR _properties$[ebp+40]
 	push	eax
@@ -3210,7 +3220,7 @@ __$ArrayPad$ = -4					; size = 4
 	add	esp, 8
 	mov	DWORD PTR _size$[ebp], eax
 
-; 305  : 	show_array(properties, size);
+; 306  : 	show_array(properties, size);
 
 	mov	eax, DWORD PTR _size$[ebp]
 	push	eax
@@ -3219,14 +3229,14 @@ __$ArrayPad$ = -4					; size = 4
 	call	?show_array@@YAXPBN0@Z			; show_array
 	add	esp, 8
 
-; 306  : 
-; 307  : 	if (size)
+; 307  : 
+; 308  : 	if (size)
 
 	cmp	DWORD PTR _size$[ebp], 0
 	je	$LN5@ch7_ex7
 
-; 308  : 	{
-; 309  : 		cout << "Enter revaluation factor: ";
+; 309  : 	{
+; 310  : 		cout << "Enter revaluation factor: ";
 
 	push	OFFSET ??_C@_0BL@BNKJKIMK@Enter?5revaluation?5factor?3?5?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -3235,20 +3245,20 @@ __$ArrayPad$ = -4					; size = 4
 	add	esp, 8
 $LN4@ch7_ex7:
 
-; 310  : 		double factor;
-; 311  : 		while (!(cin >> factor))
+; 311  : 		double factor;
+; 312  : 		while (!(cin >> factor))
 
 	mov	esi, esp
-	lea	eax, DWORD PTR _factor$23836[ebp]
+	lea	eax, DWORD PTR _factor$32625[ebp]
 	push	eax
 	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
 	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAN@Z
 	cmp	esi, esp
 	call	__RTC_CheckEsp
-	mov	DWORD PTR $T31208[ebp], eax
-	mov	ecx, DWORD PTR $T31208[ebp]
+	mov	DWORD PTR $T40340[ebp], eax
+	mov	ecx, DWORD PTR $T40340[ebp]
 	mov	edx, DWORD PTR [ecx]
-	mov	ecx, DWORD PTR $T31208[ebp]
+	mov	ecx, DWORD PTR $T40340[ebp]
 	add	ecx, DWORD PTR [edx+4]
 	mov	esi, esp
 	call	DWORD PTR __imp_??7ios_base@std@@QBE_NXZ
@@ -3258,8 +3268,8 @@ $LN4@ch7_ex7:
 	test	eax, eax
 	je	SHORT $LN3@ch7_ex7
 
-; 312  : 		{
-; 313  : 			cin.clear();
+; 313  : 		{
+; 314  : 			cin.clear();
 
 	mov	esi, esp
 	push	0
@@ -3274,7 +3284,7 @@ $LN4@ch7_ex7:
 	call	__RTC_CheckEsp
 $LN2@ch7_ex7:
 
-; 314  : 			while (cin.get() != '\n')
+; 315  : 			while (cin.get() != '\n')
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
@@ -3284,13 +3294,13 @@ $LN2@ch7_ex7:
 	cmp	eax, 10					; 0000000aH
 	je	SHORT $LN1@ch7_ex7
 
-; 315  : 				continue;
+; 316  : 				continue;
 
 	jmp	SHORT $LN2@ch7_ex7
 	jmp	SHORT $LN2@ch7_ex7
 $LN1@ch7_ex7:
 
-; 316  : 			cout << "Bad input; Please enter a number: ";
+; 317  : 			cout << "Bad input; Please enter a number: ";
 
 	push	OFFSET ??_C@_0CD@IKHNKGKB@Bad?5input?$DL?5Please?5enter?5a?5number@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -3298,24 +3308,24 @@ $LN1@ch7_ex7:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 317  : 		}
+; 318  : 		}
 
 	jmp	$LN4@ch7_ex7
 $LN3@ch7_ex7:
 
-; 318  : 		revalue(factor, properties, size);
+; 319  : 		revalue(factor, properties, size);
 
 	mov	eax, DWORD PTR _size$[ebp]
 	push	eax
 	lea	ecx, DWORD PTR _properties$[ebp]
 	push	ecx
 	sub	esp, 8
-	fld	QWORD PTR _factor$23836[ebp]
+	fld	QWORD PTR _factor$32625[ebp]
 	fstp	QWORD PTR [esp]
 	call	?revalue@@YAXNPAN0@Z			; revalue
 	add	esp, 16					; 00000010H
 
-; 319  : 		show_array(properties, size);
+; 320  : 		show_array(properties, size);
 
 	mov	eax, DWORD PTR _size$[ebp]
 	push	eax
@@ -3325,8 +3335,8 @@ $LN3@ch7_ex7:
 	add	esp, 8
 $LN5@ch7_ex7:
 
-; 320  : 	}
-; 321  : 	cout << "Done.\n";
+; 321  : 	}
+; 322  : 	cout << "Done.\n";
 
 	push	OFFSET ??_C@_06MJLDIBBJ@Done?4?6?$AA@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -3334,7 +3344,7 @@ $LN5@ch7_ex7:
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 322  : 	cin.get();
+; 323  : 	cin.get();
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
@@ -3342,7 +3352,7 @@ $LN5@ch7_ex7:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 323  : }
+; 324  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -3394,13 +3404,684 @@ $LN8@ch7_ex7:
 	DB	115					; 00000073H
 	DB	0
 ?ch7_ex7@@YAXXZ ENDP					; ch7_ex7
-; Function compile flags: /Odtp /RTCsu /ZI
 _TEXT	ENDS
+PUBLIC	??_C@_0M@PCLBILAI@?5expenses?3?5?$AA@		; `string'
+PUBLIC	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z ; std::operator<<<std::char_traits<char> >
+PUBLIC	??_C@_06IEAFMNNH@Enter?5?$AA@			; `string'
+PUBLIC	?fill@@YAXPAUexpenses@@@Z			; fill
+;	COMDAT ??_C@_0M@PCLBILAI@?5expenses?3?5?$AA@
+CONST	SEGMENT
+??_C@_0M@PCLBILAI@?5expenses?3?5?$AA@ DB ' expenses: ', 00H ; `string'
+CONST	ENDS
+;	COMDAT ??_C@_06IEAFMNNH@Enter?5?$AA@
+CONST	SEGMENT
+??_C@_06IEAFMNNH@Enter?5?$AA@ DB 'Enter ', 00H		; `string'
+; Function compile flags: /Odtp /RTCsu /ZI
+CONST	ENDS
+;	COMDAT ?fill@@YAXPAUexpenses@@@Z
+_TEXT	SEGMENT
+_x$32657 = -20						; size = 4
+_i$32652 = -8						; size = 4
+_expend$ = 8						; size = 4
+?fill@@YAXPAUexpenses@@@Z PROC				; fill, COMDAT
+
+; 345  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 216				; 000000d8H
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-216]
+	mov	ecx, 54					; 00000036H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+
+; 346  : 	for (int i = 0; i < Seasons; i++)
+
+	mov	DWORD PTR _i$32652[ebp], 0
+	jmp	SHORT $LN6@fill
+$LN5@fill:
+	mov	eax, DWORD PTR _i$32652[ebp]
+	add	eax, 1
+	mov	DWORD PTR _i$32652[ebp], eax
+$LN6@fill:
+	cmp	DWORD PTR _i$32652[ebp], 4
+	jge	$LN7@fill
+
+; 347  : 	{
+; 348  : 		cout << "Enter ";
+
+	push	OFFSET ??_C@_06IEAFMNNH@Enter?5?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 349  : 
+; 350  : 		for (int x = 0; Seazon[i][x] != '\0'; x++)
+
+	mov	DWORD PTR _x$32657[ebp], 0
+	jmp	SHORT $LN3@fill
+$LN2@fill:
+	mov	eax, DWORD PTR _x$32657[ebp]
+	add	eax, 1
+	mov	DWORD PTR _x$32657[ebp], eax
+$LN3@fill:
+	mov	eax, DWORD PTR _i$32652[ebp]
+	mov	ecx, DWORD PTR _x$32657[ebp]
+	movsx	edx, BYTE PTR _Seazon[ecx+eax*8]
+	test	edx, edx
+	je	SHORT $LN1@fill
+
+; 351  : 			cout << Seazon[i][x];
+
+	mov	eax, DWORD PTR _i$32652[ebp]
+	mov	ecx, DWORD PTR _x$32657[ebp]
+	movzx	edx, BYTE PTR _Seazon[ecx+eax*8]
+	push	edx
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	jmp	SHORT $LN2@fill
+$LN1@fill:
+
+; 352  : 		
+; 353  : 		cout << " expenses: ";
+
+	push	OFFSET ??_C@_0M@PCLBILAI@?5expenses?3?5?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 354  : 		cin >> expend->expens[i];
+
+	mov	eax, DWORD PTR _i$32652[ebp]
+	mov	ecx, DWORD PTR _expend$[ebp]
+	lea	edx, DWORD PTR [ecx+eax*8]
+	mov	esi, esp
+	push	edx
+	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
+	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAN@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 355  : 	}
+
+	jmp	$LN5@fill
+$LN7@fill:
+
+; 356  : }
+
+	pop	edi
+	pop	esi
+	pop	ebx
+	add	esp, 216				; 000000d8H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+?fill@@YAXPAUexpenses@@@Z ENDP				; fill
+_TEXT	ENDS
+PUBLIC	??_C@_0BC@PDMEGKBM@Total?5Expenses?3?5$?$AA@	; `string'
+PUBLIC	??_C@_03IIIIJPGA@?3?5$?$AA@			; `string'
+PUBLIC	??_C@_0L@PGOFJOGO@?6EXPENSES?6?$AA@		; `string'
+PUBLIC	?show@@YAXPAUexpenses@@@Z			; show
+;	COMDAT ??_C@_0BC@PDMEGKBM@Total?5Expenses?3?5$?$AA@
+CONST	SEGMENT
+??_C@_0BC@PDMEGKBM@Total?5Expenses?3?5$?$AA@ DB 'Total Expenses: $', 00H ; `string'
+CONST	ENDS
+;	COMDAT ??_C@_03IIIIJPGA@?3?5$?$AA@
+CONST	SEGMENT
+??_C@_03IIIIJPGA@?3?5$?$AA@ DB ': $', 00H		; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0L@PGOFJOGO@?6EXPENSES?6?$AA@
+CONST	SEGMENT
+??_C@_0L@PGOFJOGO@?6EXPENSES?6?$AA@ DB 0aH, 'EXPENSES', 0aH, 00H ; `string'
+; Function compile flags: /Odtp /RTCsu /ZI
+CONST	ENDS
+;	COMDAT ?show@@YAXPAUexpenses@@@Z
+_TEXT	SEGMENT
+_i$32699 = -24						; size = 4
+_total$ = -12						; size = 8
+_expend$ = 8						; size = 4
+?show@@YAXPAUexpenses@@@Z PROC				; show, COMDAT
+
+; 359  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 220				; 000000dcH
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-220]
+	mov	ecx, 55					; 00000037H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+
+; 360  : 	double total = 0.0;
+
+	fldz
+	fstp	QWORD PTR _total$[ebp]
+
+; 361  : 	cout << "\nEXPENSES\n";
+
+	push	OFFSET ??_C@_0L@PGOFJOGO@?6EXPENSES?6?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 362  : 	for (int i = 0; i < Seasons; i++)
+
+	mov	DWORD PTR _i$32699[ebp], 0
+	jmp	SHORT $LN3@show
+$LN2@show:
+	mov	eax, DWORD PTR _i$32699[ebp]
+	add	eax, 1
+	mov	DWORD PTR _i$32699[ebp], eax
+$LN3@show:
+	cmp	DWORD PTR _i$32699[ebp], 4
+	jge	SHORT $LN1@show
+
+; 363  : 	{
+; 364  : 		cout << ": $" << expend->expens[i] << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	mov	edi, esp
+	mov	ecx, DWORD PTR _i$32699[ebp]
+	mov	edx, DWORD PTR _expend$[ebp]
+	sub	esp, 8
+	fld	QWORD PTR [edx+ecx*8]
+	fstp	QWORD PTR [esp]
+	push	OFFSET ??_C@_03IIIIJPGA@?3?5$?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@N@Z
+	cmp	edi, esp
+	call	__RTC_CheckEsp
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 365  : 		total += expend->expens[i];
+
+	mov	eax, DWORD PTR _i$32699[ebp]
+	mov	ecx, DWORD PTR _expend$[ebp]
+	fld	QWORD PTR _total$[ebp]
+	fadd	QWORD PTR [ecx+eax*8]
+	fstp	QWORD PTR _total$[ebp]
+
+; 366  : 	}
+
+	jmp	SHORT $LN2@show
+$LN1@show:
+
+; 367  : 	cout << "Total Expenses: $" << total << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	mov	edi, esp
+	sub	esp, 8
+	fld	QWORD PTR _total$[ebp]
+	fstp	QWORD PTR [esp]
+	push	OFFSET ??_C@_0BC@PDMEGKBM@Total?5Expenses?3?5$?$AA@
+	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	ecx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@N@Z
+	cmp	edi, esp
+	call	__RTC_CheckEsp
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 368  : }
+
+	pop	edi
+	pop	esi
+	pop	ebx
+	add	esp, 220				; 000000dcH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+?show@@YAXPAUexpenses@@@Z ENDP				; show
+_TEXT	ENDS
+PUBLIC	__$ArrayPad$
+; Function compile flags: /Odtp /RTCsu /ZI
 ;	COMDAT ?ch7_ex8@@YAXXZ
 _TEXT	SEGMENT
+_expendables$ = -40					; size = 32
+__$ArrayPad$ = -4					; size = 4
 ?ch7_ex8@@YAXXZ PROC					; ch7_ex8, COMDAT
 
-; 326  : {
+; 370  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 236				; 000000ecH
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-236]
+	mov	ecx, 59					; 0000003bH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	eax, DWORD PTR ___security_cookie
+	xor	eax, ebp
+	mov	DWORD PTR __$ArrayPad$[ebp], eax
+
+; 371  : 	expenses expendables;
+; 372  : 	fill(&expendables);
+
+	lea	eax, DWORD PTR _expendables$[ebp]
+	push	eax
+	call	?fill@@YAXPAUexpenses@@@Z		; fill
+	add	esp, 4
+
+; 373  : 	show(&expendables);
+
+	lea	eax, DWORD PTR _expendables$[ebp]
+	push	eax
+	call	?show@@YAXPAUexpenses@@@Z		; show
+	add	esp, 4
+
+; 374  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN5@ch7_ex8
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	pop	edi
+	pop	esi
+	pop	ebx
+	mov	ecx, DWORD PTR __$ArrayPad$[ebp]
+	xor	ecx, ebp
+	call	@__security_check_cookie@4
+	add	esp, 236				; 000000ecH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+	npad	1
+$LN5@ch7_ex8:
+	DD	1
+	DD	$LN4@ch7_ex8
+$LN4@ch7_ex8:
+	DD	-40					; ffffffd8H
+	DD	32					; 00000020H
+	DD	$LN3@ch7_ex8
+$LN3@ch7_ex8:
+	DB	101					; 00000065H
+	DB	120					; 00000078H
+	DB	112					; 00000070H
+	DB	101					; 00000065H
+	DB	110					; 0000006eH
+	DB	100					; 00000064H
+	DB	97					; 00000061H
+	DB	98					; 00000062H
+	DB	108					; 0000006cH
+	DB	101					; 00000065H
+	DB	115					; 00000073H
+	DB	0
+?ch7_ex8@@YAXXZ ENDP					; ch7_ex8
+_TEXT	ENDS
+PUBLIC	??_C@_07DCDCJLMG@Skill?3?7?$AA@			; `string'
+PUBLIC	??_C@_07FFJMHLKH@Hobby?3?7?$AA@			; `string'
+PUBLIC	??_C@_01CLKCMJKC@?5?$AA@			; `string'
+PUBLIC	??_C@_09GENCJOJG@Student?5?$CD?$AA@		; `string'
+PUBLIC	??_C@_06CAGLJNJI@Name?3?7?$AA@			; `string'
+PUBLIC	?getinfo@@YAHQAUstudent@@H@Z			; getinfo
+EXTRN	__imp_?getline@?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV12@PAD_J@Z:PROC
+;	COMDAT ??_C@_07DCDCJLMG@Skill?3?7?$AA@
+CONST	SEGMENT
+??_C@_07DCDCJLMG@Skill?3?7?$AA@ DB 'Skill:', 09H, 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_07FFJMHLKH@Hobby?3?7?$AA@
+CONST	SEGMENT
+??_C@_07FFJMHLKH@Hobby?3?7?$AA@ DB 'Hobby:', 09H, 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_01CLKCMJKC@?5?$AA@
+CONST	SEGMENT
+??_C@_01CLKCMJKC@?5?$AA@ DB ' ', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_09GENCJOJG@Student?5?$CD?$AA@
+CONST	SEGMENT
+??_C@_09GENCJOJG@Student?5?$CD?$AA@ DB 'Student #', 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_06CAGLJNJI@Name?3?7?$AA@
+CONST	SEGMENT
+??_C@_06CAGLJNJI@Name?3?7?$AA@ DB 'Name:', 09H, 00H	; `string'
+; Function compile flags: /Odtp /RTCsu /ZI
+CONST	ENDS
+;	COMDAT ?getinfo@@YAHQAUstudent@@H@Z
+_TEXT	SEGMENT
+_x$ = -8						; size = 4
+_pa$ = 8						; size = 4
+_n$ = 12						; size = 4
+?getinfo@@YAHQAUstudent@@H@Z PROC			; getinfo, COMDAT
+
+; 390  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 204				; 000000ccH
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-204]
+	mov	ecx, 51					; 00000033H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+
+; 391  : 	int x = 0;
+
+	mov	DWORD PTR _x$[ebp], 0
+$LN3@getinfo:
+
+; 392  : 	while (x < n)
+
+	mov	eax, DWORD PTR _x$[ebp]
+	cmp	eax, DWORD PTR _n$[ebp]
+	jge	$LN2@getinfo
+
+; 393  : 	{
+; 394  : 		cout << "Student #" << x << endl
+; 395  : 			 << "Name:\t";
+
+	push	OFFSET ??_C@_06CAGLJNJI@Name?3?7?$AA@
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	mov	edi, esp
+	mov	ecx, DWORD PTR _x$[ebp]
+	push	ecx
+	push	OFFSET ??_C@_09GENCJOJG@Student?5?$CD?$AA@
+	mov	edx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	edx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z
+	cmp	edi, esp
+	call	__RTC_CheckEsp
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 396  : 		cin.getline(pa[x].fullname, SLEN);
+
+	mov	esi, esp
+	push	0
+	push	30					; 0000001eH
+	mov	eax, DWORD PTR _x$[ebp]
+	shl	eax, 6
+	add	eax, DWORD PTR _pa$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
+	call	DWORD PTR __imp_?getline@?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV12@PAD_J@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 397  : 		if (pa[x].fullname == " ")
+
+	mov	eax, DWORD PTR _x$[ebp]
+	shl	eax, 6
+	add	eax, DWORD PTR _pa$[ebp]
+	cmp	eax, OFFSET ??_C@_01CLKCMJKC@?5?$AA@
+	jne	SHORT $LN1@getinfo
+
+; 398  : 			return x;
+
+	mov	eax, DWORD PTR _x$[ebp]
+	jmp	$LN4@getinfo
+$LN1@getinfo:
+
+; 399  : 		cout << "Hobby:\t";
+
+	push	OFFSET ??_C@_07FFJMHLKH@Hobby?3?7?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 400  : 		cin.getline(pa[x].hobby, SLEN);
+
+	mov	esi, esp
+	push	0
+	push	30					; 0000001eH
+	mov	eax, DWORD PTR _x$[ebp]
+	shl	eax, 6
+	mov	ecx, DWORD PTR _pa$[ebp]
+	lea	edx, DWORD PTR [ecx+eax+30]
+	push	edx
+	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
+	call	DWORD PTR __imp_?getline@?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV12@PAD_J@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 401  : 		cout << "Skill:\t";
+
+	push	OFFSET ??_C@_07DCDCJLMG@Skill?3?7?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 402  : 		cin >> pa[x].ooplevel;
+
+	mov	eax, DWORD PTR _x$[ebp]
+	shl	eax, 6
+	mov	ecx, DWORD PTR _pa$[ebp]
+	lea	edx, DWORD PTR [ecx+eax+60]
+	mov	esi, esp
+	push	edx
+	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
+	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAH@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 403  : 		cin.get();
+
+	mov	esi, esp
+	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
+	call	DWORD PTR __imp_?get@?$basic_istream@DU?$char_traits@D@std@@@std@@QAEHXZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 404  : 		x++;
+
+	mov	eax, DWORD PTR _x$[ebp]
+	add	eax, 1
+	mov	DWORD PTR _x$[ebp], eax
+
+; 405  : 
+; 406  : 	}
+
+	jmp	$LN3@getinfo
+$LN2@getinfo:
+
+; 407  : 	return x;
+
+	mov	eax, DWORD PTR _x$[ebp]
+$LN4@getinfo:
+
+; 408  : 	
+; 409  : }
+
+	pop	edi
+	pop	esi
+	pop	ebx
+	add	esp, 204				; 000000ccH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+?getinfo@@YAHQAUstudent@@H@Z ENDP			; getinfo
+_TEXT	ENDS
+PUBLIC	??_C@_08BOMOONKD@Skillz?3?7?$AA@		; `string'
+PUBLIC	??_C@_02PHMGELLB@?6?6?$AA@			; `string'
+PUBLIC	?display1@@YAXUstudent@@@Z			; display1
+;	COMDAT ??_C@_08BOMOONKD@Skillz?3?7?$AA@
+CONST	SEGMENT
+??_C@_08BOMOONKD@Skillz?3?7?$AA@ DB 'Skillz:', 09H, 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_02PHMGELLB@?6?6?$AA@
+CONST	SEGMENT
+??_C@_02PHMGELLB@?6?6?$AA@ DB 0aH, 0aH, 00H		; `string'
+; Function compile flags: /Odtp /RTCsu /ZI
+CONST	ENDS
+;	COMDAT ?display1@@YAXUstudent@@@Z
+_TEXT	SEGMENT
+_st$ = 8						; size = 64
+?display1@@YAXUstudent@@@Z PROC				; display1, COMDAT
+
+; 412  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 204				; 000000ccH
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-204]
+	mov	ecx, 51					; 00000033H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+
+; 413  : 	cout << "Name:\t" << st.fullname << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	lea	ecx, DWORD PTR _st$[ebp]
+	push	ecx
+	push	OFFSET ??_C@_06CAGLJNJI@Name?3?7?$AA@
+	mov	edx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	edx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 414  : 	cout << "Hobby:\t" << st.hobby << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	lea	ecx, DWORD PTR _st$[ebp+30]
+	push	ecx
+	push	OFFSET ??_C@_07FFJMHLKH@Hobby?3?7?$AA@
+	mov	edx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	edx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 415  : 	cout << "Skillz:\t" << st.ooplevel << "\n\n";
+
+	push	OFFSET ??_C@_02PHMGELLB@?6?6?$AA@
+	mov	esi, esp
+	mov	eax, DWORD PTR _st$[ebp+60]
+	push	eax
+	push	OFFSET ??_C@_08BOMOONKD@Skillz?3?7?$AA@
+	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	ecx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 416  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN5@display1
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	pop	edi
+	pop	esi
+	pop	ebx
+	add	esp, 204				; 000000ccH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+	npad	2
+$LN5@display1:
+	DD	1
+	DD	$LN4@display1
+$LN4@display1:
+	DD	-8					; fffffff8H
+	DD	4
+	DD	$LN3@display1
+$LN3@display1:
+	DB	95					; 0000005fH
+	DB	36					; 00000024H
+	DB	65					; 00000041H
+	DB	114					; 00000072H
+	DB	114					; 00000072H
+	DB	97					; 00000061H
+	DB	121					; 00000079H
+	DB	80					; 00000050H
+	DB	97					; 00000061H
+	DB	100					; 00000064H
+	DB	0
+?display1@@YAXUstudent@@@Z ENDP				; display1
+_TEXT	ENDS
+PUBLIC	?display2@@YAXPBUstudent@@@Z			; display2
+; Function compile flags: /Odtp /RTCsu /ZI
+;	COMDAT ?display2@@YAXPBUstudent@@@Z
+_TEXT	SEGMENT
+_ps$ = 8						; size = 4
+?display2@@YAXPBUstudent@@@Z PROC			; display2, COMDAT
+
+; 418  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3413,22 +4094,417 @@ _TEXT	SEGMENT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 327  : }
+; 419  : 	cout << "Name:\t" << ps->fullname << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	mov	ecx, DWORD PTR _ps$[ebp]
+	push	ecx
+	push	OFFSET ??_C@_06CAGLJNJI@Name?3?7?$AA@
+	mov	edx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	edx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 420  : 	cout << "Hobby:\t" << ps->hobby << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	mov	ecx, DWORD PTR _ps$[ebp]
+	add	ecx, 30					; 0000001eH
+	push	ecx
+	push	OFFSET ??_C@_07FFJMHLKH@Hobby?3?7?$AA@
+	mov	edx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	edx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 421  : 	cout << "Skillz:\t" << ps->ooplevel << "\n\n";
+
+	push	OFFSET ??_C@_02PHMGELLB@?6?6?$AA@
+	mov	esi, esp
+	mov	eax, DWORD PTR _ps$[ebp]
+	mov	ecx, DWORD PTR [eax+60]
+	push	ecx
+	push	OFFSET ??_C@_08BOMOONKD@Skillz?3?7?$AA@
+	mov	edx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	edx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 422  : }
 
 	pop	edi
 	pop	esi
 	pop	ebx
+	add	esp, 192				; 000000c0H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
 	mov	esp, ebp
 	pop	ebp
 	ret	0
-?ch7_ex8@@YAXXZ ENDP					; ch7_ex8
-; Function compile flags: /Odtp /RTCsu /ZI
+?display2@@YAXPBUstudent@@@Z ENDP			; display2
 _TEXT	ENDS
+PUBLIC	?display3@@YAXQBUstudent@@H@Z			; display3
+; Function compile flags: /Odtp /RTCsu /ZI
+;	COMDAT ?display3@@YAXQBUstudent@@H@Z
+_TEXT	SEGMENT
+_x$32784 = -8						; size = 4
+_pa$ = 8						; size = 4
+_n$ = 12						; size = 4
+?display3@@YAXQBUstudent@@H@Z PROC			; display3, COMDAT
+
+; 424  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 204				; 000000ccH
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-204]
+	mov	ecx, 51					; 00000033H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+
+; 425  : 	for (int x = 0; x < n; x++)
+
+	mov	DWORD PTR _x$32784[ebp], 0
+	jmp	SHORT $LN3@display3
+$LN2@display3:
+	mov	eax, DWORD PTR _x$32784[ebp]
+	add	eax, 1
+	mov	DWORD PTR _x$32784[ebp], eax
+$LN3@display3:
+	mov	eax, DWORD PTR _x$32784[ebp]
+	cmp	eax, DWORD PTR _n$[ebp]
+	jge	$LN4@display3
+
+; 426  : 	{
+; 427  : 		cout << "Name:\t" << pa[x].fullname << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	mov	ecx, DWORD PTR _x$32784[ebp]
+	shl	ecx, 6
+	add	ecx, DWORD PTR _pa$[ebp]
+	push	ecx
+	push	OFFSET ??_C@_06CAGLJNJI@Name?3?7?$AA@
+	mov	edx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	edx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 428  : 		cout << "Hobby:\t" << pa[x].hobby << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	mov	ecx, DWORD PTR _x$32784[ebp]
+	shl	ecx, 6
+	mov	edx, DWORD PTR _pa$[ebp]
+	lea	eax, DWORD PTR [edx+ecx+30]
+	push	eax
+	push	OFFSET ??_C@_07FFJMHLKH@Hobby?3?7?$AA@
+	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	ecx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 429  : 		cout << "Skillz:\t" << pa[x].ooplevel << "\n\n";
+
+	push	OFFSET ??_C@_02PHMGELLB@?6?6?$AA@
+	mov	eax, DWORD PTR _x$32784[ebp]
+	shl	eax, 6
+	mov	esi, esp
+	mov	ecx, DWORD PTR _pa$[ebp]
+	mov	edx, DWORD PTR [ecx+eax+60]
+	push	edx
+	push	OFFSET ??_C@_08BOMOONKD@Skillz?3?7?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 430  : 	}
+
+	jmp	$LN2@display3
+$LN4@display3:
+
+; 431  : }
+
+	pop	edi
+	pop	esi
+	pop	ebx
+	add	esp, 204				; 000000ccH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+?display3@@YAXQBUstudent@@H@Z ENDP			; display3
+_TEXT	ENDS
+PUBLIC	??_C@_05KOJMJHML@Done?6?$AA@			; `string'
+PUBLIC	??_C@_0BD@EMANHFLA@Enter?5class?5size?3?5?$AA@	; `string'
+EXTRN	??_V@YAXPAX@Z:PROC				; operator delete[]
+EXTRN	??_U@YAPAXI@Z:PROC				; operator new[]
+;	COMDAT ??_C@_05KOJMJHML@Done?6?$AA@
+CONST	SEGMENT
+??_C@_05KOJMJHML@Done?6?$AA@ DB 'Done', 0aH, 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BD@EMANHFLA@Enter?5class?5size?3?5?$AA@
+CONST	SEGMENT
+??_C@_0BD@EMANHFLA@Enter?5class?5size?3?5?$AA@ DB 'Enter class size: ', 00H ; `string'
+; Function compile flags: /Odtp /RTCsu /ZI
+CONST	ENDS
 ;	COMDAT ?ch7_ex9@@YAXXZ
 _TEXT	SEGMENT
+$T40369 = -260						; size = 4
+$T40370 = -248						; size = 4
+_i$32808 = -44						; size = 4
+_entered$ = -32						; size = 4
+_ptr_stu$ = -20						; size = 4
+_class_size$ = -8					; size = 4
 ?ch7_ex9@@YAXXZ PROC					; ch7_ex9, COMDAT
 
-; 329  : {
+; 433  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 264				; 00000108H
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-264]
+	mov	ecx, 66					; 00000042H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+
+; 434  : 	cout << "Enter class size: ";
+
+	push	OFFSET ??_C@_0BD@EMANHFLA@Enter?5class?5size?3?5?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 435  : 	int class_size;
+; 436  : 	cin >> class_size;
+
+	mov	esi, esp
+	lea	eax, DWORD PTR _class_size$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
+	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAH@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+$LN5@ch7_ex9:
+
+; 437  : 	while (cin.get() != '\n')
+
+	mov	esi, esp
+	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
+	call	DWORD PTR __imp_?get@?$basic_istream@DU?$char_traits@D@std@@@std@@QAEHXZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	cmp	eax, 10					; 0000000aH
+	je	SHORT $LN4@ch7_ex9
+
+; 438  : 		continue;
+
+	jmp	SHORT $LN5@ch7_ex9
+	jmp	SHORT $LN5@ch7_ex9
+$LN4@ch7_ex9:
+
+; 439  : 
+; 440  : 	student * ptr_stu = new student[class_size];
+
+	xor	ecx, ecx
+	mov	eax, DWORD PTR _class_size$[ebp]
+	mov	edx, 64					; 00000040H
+	mul	edx
+	seto	cl
+	neg	ecx
+	or	ecx, eax
+	push	ecx
+	call	??_U@YAPAXI@Z				; operator new[]
+	add	esp, 4
+	mov	DWORD PTR $T40369[ebp], eax
+	mov	eax, DWORD PTR $T40369[ebp]
+	mov	DWORD PTR _ptr_stu$[ebp], eax
+
+; 441  : 	int entered = getinfo(ptr_stu, class_size);
+
+	mov	eax, DWORD PTR _class_size$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _ptr_stu$[ebp]
+	push	ecx
+	call	?getinfo@@YAHQAUstudent@@H@Z		; getinfo
+	add	esp, 8
+	mov	DWORD PTR _entered$[ebp], eax
+
+; 442  : 	for (int i = 0; i < entered; i++)
+
+	mov	DWORD PTR _i$32808[ebp], 0
+	jmp	SHORT $LN3@ch7_ex9
+$LN2@ch7_ex9:
+	mov	eax, DWORD PTR _i$32808[ebp]
+	add	eax, 1
+	mov	DWORD PTR _i$32808[ebp], eax
+$LN3@ch7_ex9:
+	mov	eax, DWORD PTR _i$32808[ebp]
+	cmp	eax, DWORD PTR _entered$[ebp]
+	jge	SHORT $LN1@ch7_ex9
+
+; 443  : 	{
+; 444  : 		display1(ptr_stu[i]);
+
+	mov	esi, DWORD PTR _i$32808[ebp]
+	shl	esi, 6
+	add	esi, DWORD PTR _ptr_stu$[ebp]
+	sub	esp, 64					; 00000040H
+	mov	ecx, 16					; 00000010H
+	mov	edi, esp
+	rep movsd
+	call	?display1@@YAXUstudent@@@Z		; display1
+	add	esp, 64					; 00000040H
+
+; 445  : 		display2(&ptr_stu[i]);
+
+	mov	eax, DWORD PTR _i$32808[ebp]
+	shl	eax, 6
+	add	eax, DWORD PTR _ptr_stu$[ebp]
+	push	eax
+	call	?display2@@YAXPBUstudent@@@Z		; display2
+	add	esp, 4
+
+; 446  : 	}
+
+	jmp	SHORT $LN2@ch7_ex9
+$LN1@ch7_ex9:
+
+; 447  : 	display3(ptr_stu, entered);
+
+	mov	eax, DWORD PTR _entered$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _ptr_stu$[ebp]
+	push	ecx
+	call	?display3@@YAXQBUstudent@@H@Z		; display3
+	add	esp, 8
+
+; 448  : 	delete [] ptr_stu;
+
+	mov	eax, DWORD PTR _ptr_stu$[ebp]
+	mov	DWORD PTR $T40370[ebp], eax
+	mov	ecx, DWORD PTR $T40370[ebp]
+	push	ecx
+	call	??_V@YAXPAX@Z				; operator delete[]
+	add	esp, 4
+
+; 449  : 	cout << "Done\n";
+
+	push	OFFSET ??_C@_05KOJMJHML@Done?6?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 450  : 	//return 0;
+; 451  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN10@ch7_ex9
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	pop	edi
+	pop	esi
+	pop	ebx
+	add	esp, 264				; 00000108H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+	npad	3
+$LN10@ch7_ex9:
+	DD	1
+	DD	$LN9@ch7_ex9
+$LN9@ch7_ex9:
+	DD	-8					; fffffff8H
+	DD	4
+	DD	$LN8@ch7_ex9
+$LN8@ch7_ex9:
+	DB	99					; 00000063H
+	DB	108					; 0000006cH
+	DB	97					; 00000061H
+	DB	115					; 00000073H
+	DB	115					; 00000073H
+	DB	95					; 0000005fH
+	DB	115					; 00000073H
+	DB	105					; 00000069H
+	DB	122					; 0000007aH
+	DB	101					; 00000065H
+	DB	0
+?ch7_ex9@@YAXXZ ENDP					; ch7_ex9
+_TEXT	ENDS
+PUBLIC	?calculate@@YANNNP6ANNN@Z@Z			; calculate
+; Function compile flags: /Odtp /RTCsu /ZI
+;	COMDAT ?calculate@@YANNNP6ANNN@Z@Z
+_TEXT	SEGMENT
+_x$ = 8							; size = 8
+_y$ = 16						; size = 8
+_pf$ = 24						; size = 4
+?calculate@@YANNNP6ANNN@Z@Z PROC			; calculate, COMDAT
+
+; 455  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3441,7 +4517,60 @@ _TEXT	SEGMENT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 330  : }
+; 456  : 	return pf(x, y);
+
+	mov	esi, esp
+	sub	esp, 8
+	fld	QWORD PTR _y$[ebp]
+	fstp	QWORD PTR [esp]
+	sub	esp, 8
+	fld	QWORD PTR _x$[ebp]
+	fstp	QWORD PTR [esp]
+	call	DWORD PTR _pf$[ebp]
+	add	esp, 16					; 00000010H
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 457  : }
+
+	pop	edi
+	pop	esi
+	pop	ebx
+	add	esp, 192				; 000000c0H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+?calculate@@YANNNP6ANNN@Z@Z ENDP			; calculate
+_TEXT	ENDS
+PUBLIC	?add@@YANNN@Z					; add
+; Function compile flags: /Odtp /RTCsu /ZI
+;	COMDAT ?add@@YANNN@Z
+_TEXT	SEGMENT
+_p$ = 8							; size = 8
+_q$ = 16						; size = 8
+?add@@YANNN@Z PROC					; add, COMDAT
+
+; 460  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 192				; 000000c0H
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-192]
+	mov	ecx, 48					; 00000030H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+
+; 461  : 	return p + q;
+
+	fld	QWORD PTR _p$[ebp]
+	fadd	QWORD PTR _q$[ebp]
+
+; 462  : }
 
 	pop	edi
 	pop	esi
@@ -3449,34 +4578,242 @@ _TEXT	SEGMENT
 	mov	esp, ebp
 	pop	ebp
 	ret	0
-?ch7_ex9@@YAXXZ ENDP					; ch7_ex9
-; Function compile flags: /Odtp /RTCsu /ZI
+?add@@YANNN@Z ENDP					; add
 _TEXT	ENDS
+PUBLIC	?subtract@@YANNN@Z				; subtract
+; Function compile flags: /Odtp /RTCsu /ZI
+;	COMDAT ?subtract@@YANNN@Z
+_TEXT	SEGMENT
+_p$ = 8							; size = 8
+_q$ = 16						; size = 8
+?subtract@@YANNN@Z PROC					; subtract, COMDAT
+
+; 465  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 192				; 000000c0H
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-192]
+	mov	ecx, 48					; 00000030H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+
+; 466  : 	return p - q;
+
+	fld	QWORD PTR _p$[ebp]
+	fsub	QWORD PTR _q$[ebp]
+
+; 467  : }
+
+	pop	edi
+	pop	esi
+	pop	ebx
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+?subtract@@YANNN@Z ENDP					; subtract
+_TEXT	ENDS
+PUBLIC	??_C@_08PABDFCEO@Another?6?$AA@			; `string'
+PUBLIC	??_C@_09KFNBHLDK@Value?52?3?5?$AA@		; `string'
+PUBLIC	??_C@_09LHGENENE@Value?51?3?5?$AA@		; `string'
+PUBLIC	??_C@_0DH@ODCJBCHI@Enter?5two?5double?5values?5to?5be?5tr@ ; `string'
+;	COMDAT ??_C@_08PABDFCEO@Another?6?$AA@
+CONST	SEGMENT
+??_C@_08PABDFCEO@Another?6?$AA@ DB 'Another', 0aH, 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_09KFNBHLDK@Value?52?3?5?$AA@
+CONST	SEGMENT
+??_C@_09KFNBHLDK@Value?52?3?5?$AA@ DB 'Value 2: ', 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_09LHGENENE@Value?51?3?5?$AA@
+CONST	SEGMENT
+??_C@_09LHGENENE@Value?51?3?5?$AA@ DB 'Value 1: ', 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0DH@ODCJBCHI@Enter?5two?5double?5values?5to?5be?5tr@
+CONST	SEGMENT
+??_C@_0DH@ODCJBCHI@Enter?5two?5double?5values?5to?5be?5tr@ DB 'Enter two '
+	DB	'double values to be transmuted <q to quit>: ', 00H ; `string'
+; Function compile flags: /Odtp /RTCsu /ZI
+CONST	ENDS
 ;	COMDAT ?ch7_ex10@@YAXXZ
 _TEXT	SEGMENT
+$T40382 = -232						; size = 4
+_o$ = -28						; size = 8
+_n$ = -12						; size = 8
 ?ch7_ex10@@YAXXZ PROC					; ch7_ex10, COMDAT
 
-; 332  : {
+; 469  : {
 
 	push	ebp
 	mov	ebp, esp
-	sub	esp, 192				; 000000c0H
+	sub	esp, 236				; 000000ecH
 	push	ebx
 	push	esi
 	push	edi
-	lea	edi, DWORD PTR [ebp-192]
-	mov	ecx, 48					; 00000030H
+	lea	edi, DWORD PTR [ebp-236]
+	mov	ecx, 59					; 0000003bH
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 333  : }
+; 470  : 	double n, o;
+; 471  : 	n = o = 0.0;
 
+	fldz
+	fstp	QWORD PTR _o$[ebp]
+	fld	QWORD PTR _o$[ebp]
+	fstp	QWORD PTR _n$[ebp]
+
+; 472  : 	cout << "Enter two double values to be transmuted <q to quit>: ";
+
+	push	OFFSET ??_C@_0DH@ODCJBCHI@Enter?5two?5double?5values?5to?5be?5tr@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+$LN2@ch7_ex10:
+
+; 473  : 	while (cin >> n >> o)
+
+	mov	esi, esp
+	lea	eax, DWORD PTR _o$[ebp]
+	push	eax
+	mov	edi, esp
+	lea	ecx, DWORD PTR _n$[ebp]
+	push	ecx
+	mov	ecx, DWORD PTR __imp_?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
+	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAN@Z
+	cmp	edi, esp
+	call	__RTC_CheckEsp
+	mov	ecx, eax
+	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAN@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR $T40382[ebp], eax
+	mov	edx, DWORD PTR $T40382[ebp]
+	mov	eax, DWORD PTR [edx]
+	mov	ecx, DWORD PTR $T40382[ebp]
+	add	ecx, DWORD PTR [eax+4]
+	mov	esi, esp
+	call	DWORD PTR __imp_??Bios_base@std@@QBEPAXXZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	test	eax, eax
+	je	$LN1@ch7_ex10
+
+; 474  : 	{
+; 475  : 		cout << "Value 1: " << calculate(n, o, add) << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	push	OFFSET ?add@@YANNN@Z			; add
+	sub	esp, 8
+	fld	QWORD PTR _o$[ebp]
+	fstp	QWORD PTR [esp]
+	sub	esp, 8
+	fld	QWORD PTR _n$[ebp]
+	fstp	QWORD PTR [esp]
+	call	?calculate@@YANNNP6ANNN@Z@Z		; calculate
+	add	esp, 20					; 00000014H
+	mov	edi, esp
+	sub	esp, 8
+	fstp	QWORD PTR [esp]
+	push	OFFSET ??_C@_09LHGENENE@Value?51?3?5?$AA@
+	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	ecx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@N@Z
+	cmp	edi, esp
+	call	__RTC_CheckEsp
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 476  : 		cout << "Value 2: " << calculate(n, o, subtract) << endl;
+
+	mov	esi, esp
+	mov	eax, DWORD PTR __imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z
+	push	eax
+	push	OFFSET ?subtract@@YANNN@Z		; subtract
+	sub	esp, 8
+	fld	QWORD PTR _o$[ebp]
+	fstp	QWORD PTR [esp]
+	sub	esp, 8
+	fld	QWORD PTR _n$[ebp]
+	fstp	QWORD PTR [esp]
+	call	?calculate@@YANNNP6ANNN@Z@Z		; calculate
+	add	esp, 20					; 00000014H
+	mov	edi, esp
+	sub	esp, 8
+	fstp	QWORD PTR [esp]
+	push	OFFSET ??_C@_09KFNBHLDK@Value?52?3?5?$AA@
+	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	ecx
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@N@Z
+	cmp	edi, esp
+	call	__RTC_CheckEsp
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 477  : 		cout << "Another\n";
+
+	push	OFFSET ??_C@_08PABDFCEO@Another?6?$AA@
+	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	push	eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 8
+
+; 478  : 	}
+
+	jmp	$LN2@ch7_ex10
+$LN1@ch7_ex10:
+
+; 479  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN8@ch7_ex10
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
 	pop	edi
 	pop	esi
 	pop	ebx
+	add	esp, 236				; 000000ecH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
 	mov	esp, ebp
 	pop	ebp
 	ret	0
+	npad	1
+$LN8@ch7_ex10:
+	DD	2
+	DD	$LN7@ch7_ex10
+$LN7@ch7_ex10:
+	DD	-12					; fffffff4H
+	DD	8
+	DD	$LN5@ch7_ex10
+	DD	-28					; ffffffe4H
+	DD	8
+	DD	$LN6@ch7_ex10
+$LN6@ch7_ex10:
+	DB	111					; 0000006fH
+	DB	0
+$LN5@ch7_ex10:
+	DB	110					; 0000006eH
+	DB	0
 ?ch7_ex10@@YAXXZ ENDP					; ch7_ex10
 _TEXT	ENDS
 PUBLIC	__real@4000000000000000
@@ -3491,7 +4828,7 @@ _x$ = 8							; size = 8
 _y$ = 16						; size = 8
 ?harmony@@YANNN@Z PROC					; harmony, COMDAT
 
-; 337  : {
+; 483  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3504,7 +4841,7 @@ _y$ = 16						; size = 8
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 338  : 	return 2.0*x*y/(x+y);
+; 484  : 	return 2.0*x*y/(x+y);
 
 	fld	QWORD PTR __real@4000000000000000
 	fmul	QWORD PTR _x$[ebp]
@@ -3513,7 +4850,7 @@ _y$ = 16						; size = 8
 	fadd	QWORD PTR _y$[ebp]
 	fdivp	ST(1), ST(0)
 
-; 339  : }
+; 485  : }
 
 	pop	edi
 	pop	esi
@@ -3524,7 +4861,6 @@ _y$ = 16						; size = 8
 ?harmony@@YANNN@Z ENDP					; harmony
 _TEXT	ENDS
 PUBLIC	??_C@_0CG@JFIACGOE@Enter?5golf?5scores?5to?5be?5crunched@ ; `string'
-EXTRN	??_U@YAPAXI@Z:PROC				; operator new[]
 ;	COMDAT ??_C@_0CG@JFIACGOE@Enter?5golf?5scores?5to?5be?5crunched@
 CONST	SEGMENT
 ??_C@_0CG@JFIACGOE@Enter?5golf?5scores?5to?5be?5crunched@ DB 'Enter golf '
@@ -3533,14 +4869,14 @@ CONST	SEGMENT
 CONST	ENDS
 ;	COMDAT ?golfread@@YAPAHH@Z
 _TEXT	SEGMENT
-$T31225 = -236						; size = 4
-$T31226 = -224						; size = 4
-_loop$23866 = -20					; size = 4
+$T40393 = -236						; size = 4
+$T40394 = -224						; size = 4
+_loop$32873 = -20					; size = 4
 _scores$ = -8						; size = 4
 _arraysize$ = 8						; size = 4
 ?golfread@@YAPAHH@Z PROC				; golfread, COMDAT
 
-; 342  : {
+; 488  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3553,7 +4889,7 @@ _arraysize$ = 8						; size = 4
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 
-; 343  : 	int * scores = new int[arraysize];
+; 489  : 	int * scores = new int[arraysize];
 
 	xor	ecx, ecx
 	mov	eax, DWORD PTR _arraysize$[ebp]
@@ -3565,12 +4901,12 @@ _arraysize$ = 8						; size = 4
 	push	ecx
 	call	??_U@YAPAXI@Z				; operator new[]
 	add	esp, 4
-	mov	DWORD PTR $T31225[ebp], eax
-	mov	eax, DWORD PTR $T31225[ebp]
+	mov	DWORD PTR $T40393[ebp], eax
+	mov	eax, DWORD PTR $T40393[ebp]
 	mov	DWORD PTR _scores$[ebp], eax
 
-; 344  : 	
-; 345  : 	cout << "Enter golf scores to be crunched\n#1: ";
+; 490  : 	
+; 491  : 	cout << "Enter golf scores to be crunched\n#1: ";
 
 	push	OFFSET ??_C@_0CG@JFIACGOE@Enter?5golf?5scores?5to?5be?5crunched@
 	mov	eax, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
@@ -3578,20 +4914,20 @@ _arraysize$ = 8						; size = 4
 	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	add	esp, 8
 
-; 346  : 
-; 347  : 	for (int loop = 0; loop < arraysize && cin >> scores[loop]; ++loop)
+; 492  : 
+; 493  : 	for (int loop = 0; loop < arraysize && cin >> scores[loop]; ++loop)
 
-	mov	DWORD PTR _loop$23866[ebp], 0
+	mov	DWORD PTR _loop$32873[ebp], 0
 	jmp	SHORT $LN3@golfread
 $LN2@golfread:
-	mov	eax, DWORD PTR _loop$23866[ebp]
+	mov	eax, DWORD PTR _loop$32873[ebp]
 	add	eax, 1
-	mov	DWORD PTR _loop$23866[ebp], eax
+	mov	DWORD PTR _loop$32873[ebp], eax
 $LN3@golfread:
-	mov	eax, DWORD PTR _loop$23866[ebp]
+	mov	eax, DWORD PTR _loop$32873[ebp]
 	cmp	eax, DWORD PTR _arraysize$[ebp]
 	jge	$LN1@golfread
-	mov	eax, DWORD PTR _loop$23866[ebp]
+	mov	eax, DWORD PTR _loop$32873[ebp]
 	mov	ecx, DWORD PTR _scores$[ebp]
 	lea	edx, DWORD PTR [ecx+eax*4]
 	mov	esi, esp
@@ -3600,10 +4936,10 @@ $LN3@golfread:
 	call	DWORD PTR __imp_??5?$basic_istream@DU?$char_traits@D@std@@@std@@QAEAAV01@AAH@Z
 	cmp	esi, esp
 	call	__RTC_CheckEsp
-	mov	DWORD PTR $T31226[ebp], eax
-	mov	eax, DWORD PTR $T31226[ebp]
+	mov	DWORD PTR $T40394[ebp], eax
+	mov	eax, DWORD PTR $T40394[ebp]
 	mov	ecx, DWORD PTR [eax]
-	mov	edx, DWORD PTR $T31226[ebp]
+	mov	edx, DWORD PTR $T40394[ebp]
 	add	edx, DWORD PTR [ecx+4]
 	mov	esi, esp
 	mov	ecx, edx
@@ -3613,10 +4949,10 @@ $LN3@golfread:
 	test	eax, eax
 	je	SHORT $LN1@golfread
 
-; 348  : 		cout << "#" << loop+1 << ": ";
+; 494  : 		cout << "#" << loop+1 << ": ";
 
 	push	OFFSET ??_C@_02LMMGGCAJ@?3?5?$AA@
-	mov	eax, DWORD PTR _loop$23866[ebp]
+	mov	eax, DWORD PTR _loop$32873[ebp]
 	add	eax, 1
 	mov	esi, esp
 	push	eax
@@ -3635,12 +4971,12 @@ $LN3@golfread:
 	jmp	$LN2@golfread
 $LN1@golfread:
 
-; 349  : 
-; 350  : 	return scores;
+; 495  : 
+; 496  : 	return scores;
 
 	mov	eax, DWORD PTR _scores$[ebp]
 
-; 351  : }
+; 497  : }
 
 	pop	edi
 	pop	esi
@@ -3714,11 +5050,11 @@ tv287 = -332						; size = 4
 tv137 = -332						; size = 4
 tv289 = -329						; size = 1
 tv282 = -329						; size = 1
-$T31231 = -324						; size = 4
-$T31232 = -312						; size = 4
-$T31233 = -300						; size = 4
-$T31234 = -288						; size = 4
-$T31235 = -276						; size = 4
+$T40399 = -324						; size = 4
+$T40400 = -312						; size = 4
+$T40401 = -300						; size = 4
+$T40402 = -288						; size = 4
+$T40403 = -276						; size = 4
 __Ok$ = -72						; size = 8
 __Pad$ = -56						; size = 8
 __Count$ = -40						; size = 8
@@ -3928,14 +5264,14 @@ $LN27@operator:
 	call	__RTC_CheckEsp
 	mov	DWORD PTR tv284[ebp], eax
 	mov	ecx, DWORD PTR tv284[ebp]
-	mov	DWORD PTR $T31231[ebp], ecx
+	mov	DWORD PTR $T40399[ebp], ecx
 	call	?eof@?$char_traits@D@std@@SAHXZ		; std::char_traits<char>::eof
 	mov	DWORD PTR tv285[ebp], eax
 	mov	edx, DWORD PTR tv285[ebp]
-	mov	DWORD PTR $T31232[ebp], edx
-	lea	eax, DWORD PTR $T31231[ebp]
+	mov	DWORD PTR $T40400[ebp], edx
+	lea	eax, DWORD PTR $T40399[ebp]
 	push	eax
-	lea	ecx, DWORD PTR $T31232[ebp]
+	lea	ecx, DWORD PTR $T40400[ebp]
 	push	ecx
 	call	?eq_int_type@?$char_traits@D@std@@SA_NABH0@Z ; std::char_traits<char>::eq_int_type
 	add	esp, 8
@@ -4061,14 +5397,14 @@ $LN29@operator:
 	call	__RTC_CheckEsp
 	mov	DWORD PTR tv291[ebp], eax
 	mov	ecx, DWORD PTR tv291[ebp]
-	mov	DWORD PTR $T31233[ebp], ecx
+	mov	DWORD PTR $T40401[ebp], ecx
 	call	?eof@?$char_traits@D@std@@SAHXZ		; std::char_traits<char>::eof
 	mov	DWORD PTR tv292[ebp], eax
 	mov	edx, DWORD PTR tv292[ebp]
-	mov	DWORD PTR $T31234[ebp], edx
-	lea	eax, DWORD PTR $T31233[ebp]
+	mov	DWORD PTR $T40402[ebp], edx
+	lea	eax, DWORD PTR $T40401[ebp]
 	push	eax
-	lea	ecx, DWORD PTR $T31234[ebp]
+	lea	ecx, DWORD PTR $T40402[ebp]
 	push	ecx
 	call	?eq_int_type@?$char_traits@D@std@@SA_NABH0@Z ; std::char_traits<char>::eq_int_type
 	add	esp, 8
@@ -4149,11 +5485,11 @@ $LN13@operator:
 ; 807  : 	return (_Ostr);
 
 	mov	eax, DWORD PTR __Ostr$[ebp]
-	mov	DWORD PTR $T31235[ebp], eax
+	mov	DWORD PTR $T40403[ebp], eax
 	mov	DWORD PTR __$EHRec$[ebp+12], -1
 	lea	ecx, DWORD PTR __Ok$[ebp]
 	call	??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ ; std::basic_ostream<char,std::char_traits<char> >::sentry::~sentry
-	mov	eax, DWORD PTR $T31235[ebp]
+	mov	eax, DWORD PTR $T40403[ebp]
 
 ; 808  : 	}
 
@@ -4766,4 +6102,497 @@ $LN2@Sentry_bas@2:
 	ret	0
 ??1_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ ENDP ; std::basic_ostream<char,std::char_traits<char> >::_Sentry_base::~_Sentry_base
 _TEXT	ENDS
+;	COMDAT xdata$x
+xdata$x	SEGMENT
+__catchsym$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z$3 DD 040H
+	DD	00H
+	DD	00H
+	DD	FLAT:__catch$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z$0
+__tryblocktable$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z DD 01H
+	DD	01H
+	DD	02H
+	DD	01H
+	DD	FLAT:__catchsym$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z$3
+__unwindtable$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z DD 0ffffffffH
+	DD	FLAT:__unwindfunclet$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z$2
+	DD	00H
+	DD	00H
+	DD	00H
+	DD	00H
+__ehfuncinfo$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z DD 019930522H
+	DD	03H
+	DD	FLAT:__unwindtable$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z
+	DD	01H
+	DD	FLAT:__tryblocktable$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z
+	DD	2 DUP(00H)
+	DD	00H
+	DD	01H
+; Function compile flags: /Odtp /RTCsu /ZI
+xdata$x	ENDS
+;	COMDAT ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z
+_TEXT	SEGMENT
+tv284 = -353						; size = 1
+tv275 = -353						; size = 1
+tv283 = -352						; size = 4
+tv274 = -352						; size = 4
+tv95 = -352						; size = 8
+tv279 = -349						; size = 1
+tv282 = -348						; size = 4
+tv278 = -348						; size = 4
+tv273 = -348						; size = 4
+tv318 = -344						; size = 8
+tv281 = -344						; size = 4
+tv277 = -344						; size = 4
+tv272 = -344						; size = 4
+tv276 = -340						; size = 4
+tv65 = -340						; size = 4
+tv280 = -337						; size = 1
+tv271 = -337						; size = 1
+$T40463 = -332						; size = 4
+$T40464 = -320						; size = 4
+$T40465 = -308						; size = 4
+$T40466 = -296						; size = 4
+$T40467 = -284						; size = 4
+$T40468 = -272						; size = 4
+$T40469 = -260						; size = 4
+__Pad$37594 = -56					; size = 8
+__Ok$ = -40						; size = 8
+__State$ = -24						; size = 4
+__$EHRec$ = -16						; size = 16
+__Ostr$ = 8						; size = 4
+__Ch$ = 12						; size = 1
+??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z PROC ; std::operator<<<std::char_traits<char> >, COMDAT
+
+; 813  : 	{	// insert a char into char stream
+
+	push	ebp
+	mov	ebp, esp
+	push	-1
+	push	__ehhandler$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z
+	mov	eax, DWORD PTR fs:0
+	push	eax
+	push	ecx
+	sub	esp, 340				; 00000154H
+	push	ebx
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-356]
+	mov	ecx, 85					; 00000055H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	eax, DWORD PTR ___security_cookie
+	xor	eax, ebp
+	push	eax
+	lea	eax, DWORD PTR __$EHRec$[ebp+4]
+	mov	DWORD PTR fs:0, eax
+	mov	DWORD PTR __$EHRec$[ebp], esp
+
+; 814  : 	typedef char _Elem;
+; 815  : 	typedef basic_ostream<_Elem, _Traits> _Myos;
+; 816  : 	ios_base::iostate _State = ios_base::goodbit;
+
+	mov	DWORD PTR __State$[ebp], 0
+
+; 817  : 	const typename _Myos::sentry _Ok(_Ostr);
+
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR __Ok$[ebp]
+	call	??0sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@AAV12@@Z ; std::basic_ostream<char,std::char_traits<char> >::sentry::sentry
+	mov	DWORD PTR __$EHRec$[ebp+12], 0
+
+; 818  : 
+; 819  : 	if (_Ok)
+
+	lea	ecx, DWORD PTR __Ok$[ebp]
+	call	??Bsentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QBEPQ_Bool_struct@2@HXZ ; std::basic_ostream<char,std::char_traits<char> >::sentry::operator int std::_Bool_struct::*
+	cmp	eax, -1
+	je	$LN12@operator@2
+
+; 820  : 		{	// state okay, insert
+; 821  : 		streamsize _Pad = _Ostr.width() <= 1 ? 0 : _Ostr.width() - 1;
+
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	esi, esp
+	mov	ecx, edx
+	call	DWORD PTR __imp_?width@ios_base@std@@QBE_JXZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR tv318[ebp], eax
+	mov	DWORD PTR tv318[ebp+4], edx
+	cmp	DWORD PTR tv318[ebp+4], 0
+	jg	SHORT $LN15@operator@2
+	jl	SHORT $LN23@operator@2
+	cmp	DWORD PTR tv318[ebp], 1
+	ja	SHORT $LN15@operator@2
+$LN23@operator@2:
+	mov	DWORD PTR tv95[ebp], 0
+	mov	DWORD PTR tv95[ebp+4], 0
+	jmp	SHORT $LN16@operator@2
+$LN15@operator@2:
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	esi, esp
+	mov	ecx, edx
+	call	DWORD PTR __imp_?width@ios_base@std@@QBE_JXZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	sub	eax, 1
+	sbb	edx, 0
+	mov	DWORD PTR tv95[ebp], eax
+	mov	DWORD PTR tv95[ebp+4], edx
+$LN16@operator@2:
+	mov	eax, DWORD PTR tv95[ebp]
+	mov	DWORD PTR __Pad$37594[ebp], eax
+	mov	ecx, DWORD PTR tv95[ebp+4]
+	mov	DWORD PTR __Pad$37594[ebp+4], ecx
+
+; 822  : 
+; 823  : 		_TRY_IO_BEGIN
+
+	mov	BYTE PTR __$EHRec$[ebp+12], 1
+
+; 824  : 		if ((_Ostr.flags() & ios_base::adjustfield) != ios_base::left)
+
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	esi, esp
+	mov	ecx, edx
+	call	DWORD PTR __imp_?flags@ios_base@std@@QBEHXZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR tv65[ebp], eax
+	mov	eax, DWORD PTR tv65[ebp]
+	and	eax, 448				; 000001c0H
+	cmp	eax, 64					; 00000040H
+	je	$LN10@operator@2
+	jmp	SHORT $LN9@operator@2
+$LN8@operator@2:
+
+; 825  : 			for (; _State == ios_base::goodbit && 0 < _Pad;
+; 826  : 				--_Pad)	// pad on left
+
+	mov	eax, DWORD PTR __Pad$37594[ebp]
+	sub	eax, 1
+	mov	ecx, DWORD PTR __Pad$37594[ebp+4]
+	sbb	ecx, 0
+	mov	DWORD PTR __Pad$37594[ebp], eax
+	mov	DWORD PTR __Pad$37594[ebp+4], ecx
+$LN9@operator@2:
+	cmp	DWORD PTR __State$[ebp], 0
+	jne	$LN10@operator@2
+	cmp	DWORD PTR __Pad$37594[ebp+4], 0
+	jl	$LN10@operator@2
+	jg	SHORT $LN24@operator@2
+	cmp	DWORD PTR __Pad$37594[ebp], 0
+	jbe	$LN10@operator@2
+$LN24@operator@2:
+
+; 827  : 				if (_Traits::eq_int_type(_Traits::eof(),
+; 828  : 					_Ostr.rdbuf()->sputc(_Ostr.fill())))
+
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	esi, esp
+	mov	ecx, edx
+	call	DWORD PTR __imp_?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QBEDXZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	BYTE PTR tv271[ebp], al
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	esi, esp
+	mov	ecx, edx
+	call	DWORD PTR __imp_?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QBEPAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR tv272[ebp], eax
+	mov	esi, esp
+	movzx	eax, BYTE PTR tv271[ebp]
+	push	eax
+	mov	ecx, DWORD PTR tv272[ebp]
+	call	DWORD PTR __imp_?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHD@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR tv273[ebp], eax
+	mov	ecx, DWORD PTR tv273[ebp]
+	mov	DWORD PTR $T40463[ebp], ecx
+	call	?eof@?$char_traits@D@std@@SAHXZ		; std::char_traits<char>::eof
+	mov	DWORD PTR tv274[ebp], eax
+	mov	edx, DWORD PTR tv274[ebp]
+	mov	DWORD PTR $T40464[ebp], edx
+	lea	eax, DWORD PTR $T40463[ebp]
+	push	eax
+	lea	ecx, DWORD PTR $T40464[ebp]
+	push	ecx
+	call	?eq_int_type@?$char_traits@D@std@@SA_NABH0@Z ; std::char_traits<char>::eq_int_type
+	add	esp, 8
+	mov	BYTE PTR tv275[ebp], al
+	movzx	edx, BYTE PTR tv275[ebp]
+	test	edx, edx
+	je	SHORT $LN6@operator@2
+
+; 829  : 					_State |= ios_base::badbit;
+
+	mov	eax, DWORD PTR __State$[ebp]
+	or	eax, 4
+	mov	DWORD PTR __State$[ebp], eax
+$LN6@operator@2:
+
+; 830  : 
+; 831  : 		if (_State == ios_base::goodbit
+
+	jmp	$LN8@operator@2
+$LN10@operator@2:
+
+; 832  : 			&& _Traits::eq_int_type(_Traits::eof(),
+; 833  : 				_Ostr.rdbuf()->sputc(_Ch)))
+
+	cmp	DWORD PTR __State$[ebp], 0
+	jne	$LN5@operator@2
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	esi, esp
+	mov	ecx, edx
+	call	DWORD PTR __imp_?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QBEPAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR tv276[ebp], eax
+	mov	esi, esp
+	movzx	eax, BYTE PTR __Ch$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR tv276[ebp]
+	call	DWORD PTR __imp_?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHD@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR tv277[ebp], eax
+	mov	ecx, DWORD PTR tv277[ebp]
+	mov	DWORD PTR $T40465[ebp], ecx
+	call	?eof@?$char_traits@D@std@@SAHXZ		; std::char_traits<char>::eof
+	mov	DWORD PTR tv278[ebp], eax
+	mov	edx, DWORD PTR tv278[ebp]
+	mov	DWORD PTR $T40466[ebp], edx
+	lea	eax, DWORD PTR $T40465[ebp]
+	push	eax
+	lea	ecx, DWORD PTR $T40466[ebp]
+	push	ecx
+	call	?eq_int_type@?$char_traits@D@std@@SA_NABH0@Z ; std::char_traits<char>::eq_int_type
+	add	esp, 8
+	mov	BYTE PTR tv279[ebp], al
+	movzx	edx, BYTE PTR tv279[ebp]
+	test	edx, edx
+	je	SHORT $LN5@operator@2
+
+; 834  : 			_State |= ios_base::badbit;
+
+	mov	eax, DWORD PTR __State$[ebp]
+	or	eax, 4
+	mov	DWORD PTR __State$[ebp], eax
+$LN5@operator@2:
+
+; 835  : 
+; 836  : 		for (; _State == ios_base::goodbit && 0 < _Pad;
+
+	jmp	SHORT $LN4@operator@2
+$LN3@operator@2:
+
+; 837  : 			--_Pad)	// pad on right
+
+	mov	eax, DWORD PTR __Pad$37594[ebp]
+	sub	eax, 1
+	mov	ecx, DWORD PTR __Pad$37594[ebp+4]
+	sbb	ecx, 0
+	mov	DWORD PTR __Pad$37594[ebp], eax
+	mov	DWORD PTR __Pad$37594[ebp+4], ecx
+$LN4@operator@2:
+	cmp	DWORD PTR __State$[ebp], 0
+	jne	$LN2@operator@2
+	cmp	DWORD PTR __Pad$37594[ebp+4], 0
+	jl	$LN2@operator@2
+	jg	SHORT $LN25@operator@2
+	cmp	DWORD PTR __Pad$37594[ebp], 0
+	jbe	$LN2@operator@2
+$LN25@operator@2:
+
+; 838  : 			if (_Traits::eq_int_type(_Traits::eof(),
+; 839  : 				_Ostr.rdbuf()->sputc(_Ostr.fill())))
+
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	esi, esp
+	mov	ecx, edx
+	call	DWORD PTR __imp_?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QBEDXZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	BYTE PTR tv280[ebp], al
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	esi, esp
+	mov	ecx, edx
+	call	DWORD PTR __imp_?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QBEPAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR tv281[ebp], eax
+	mov	esi, esp
+	movzx	eax, BYTE PTR tv280[ebp]
+	push	eax
+	mov	ecx, DWORD PTR tv281[ebp]
+	call	DWORD PTR __imp_?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHD@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR tv282[ebp], eax
+	mov	ecx, DWORD PTR tv282[ebp]
+	mov	DWORD PTR $T40467[ebp], ecx
+	call	?eof@?$char_traits@D@std@@SAHXZ		; std::char_traits<char>::eof
+	mov	DWORD PTR tv283[ebp], eax
+	mov	edx, DWORD PTR tv283[ebp]
+	mov	DWORD PTR $T40468[ebp], edx
+	lea	eax, DWORD PTR $T40467[ebp]
+	push	eax
+	lea	ecx, DWORD PTR $T40468[ebp]
+	push	ecx
+	call	?eq_int_type@?$char_traits@D@std@@SA_NABH0@Z ; std::char_traits<char>::eq_int_type
+	add	esp, 8
+	mov	BYTE PTR tv284[ebp], al
+	movzx	edx, BYTE PTR tv284[ebp]
+	test	edx, edx
+	je	SHORT $LN1@operator@2
+
+; 840  : 				_State |= ios_base::badbit;
+
+	mov	eax, DWORD PTR __State$[ebp]
+	or	eax, 4
+	mov	DWORD PTR __State$[ebp], eax
+$LN1@operator@2:
+
+; 841  : 		_CATCH_IO_(_Ostr)
+
+	jmp	$LN3@operator@2
+$LN2@operator@2:
+	jmp	SHORT $LN17@operator@2
+__catch$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z$0:
+	mov	esi, esp
+	push	1
+	push	4
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	ecx, edx
+	call	DWORD PTR __imp_?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QAEXH_N@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR __$EHRec$[ebp+12], 0
+	mov	eax, $LN12@operator@2
+	ret	0
+$LN17@operator@2:
+	mov	DWORD PTR __$EHRec$[ebp+12], 0
+$LN12@operator@2:
+
+; 842  : 		}
+; 843  : 
+; 844  : 	_Ostr.width(0);
+
+	mov	esi, esp
+	push	0
+	push	0
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	mov	edx, DWORD PTR __Ostr$[ebp]
+	add	edx, DWORD PTR [ecx+4]
+	mov	ecx, edx
+	call	DWORD PTR __imp_?width@ios_base@std@@QAE_J_J@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 845  : 	_Ostr.setstate(_State);
+
+	mov	esi, esp
+	push	0
+	mov	eax, DWORD PTR __State$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR __Ostr$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	mov	ecx, DWORD PTR __Ostr$[ebp]
+	add	ecx, DWORD PTR [edx+4]
+	call	DWORD PTR __imp_?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QAEXH_N@Z
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 846  : 	return (_Ostr);
+
+	mov	eax, DWORD PTR __Ostr$[ebp]
+	mov	DWORD PTR $T40469[ebp], eax
+	mov	DWORD PTR __$EHRec$[ebp+12], -1
+	lea	ecx, DWORD PTR __Ok$[ebp]
+	call	??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ ; std::basic_ostream<char,std::char_traits<char> >::sentry::~sentry
+	mov	eax, DWORD PTR $T40469[ebp]
+
+; 847  : 	}
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN29@operator@2
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	mov	ecx, DWORD PTR __$EHRec$[ebp+4]
+	mov	DWORD PTR fs:0, ecx
+	pop	ecx
+	pop	edi
+	pop	esi
+	pop	ebx
+	add	esp, 356				; 00000164H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+	npad	3
+$LN29@operator@2:
+	DD	1
+	DD	$LN28@operator@2
+$LN28@operator@2:
+	DD	-40					; ffffffd8H
+	DD	8
+	DD	$LN26@operator@2
+$LN26@operator@2:
+	DB	95					; 0000005fH
+	DB	79					; 0000004fH
+	DB	107					; 0000006bH
+	DB	0
+_TEXT	ENDS
+;	COMDAT text$x
+text$x	SEGMENT
+__unwindfunclet$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z$2:
+	lea	ecx, DWORD PTR __Ok$[ebp]
+	jmp	??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ ; std::basic_ostream<char,std::char_traits<char> >::sentry::~sentry
+__ehhandler$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z:
+	mov	edx, DWORD PTR [esp+8]
+	lea	eax, DWORD PTR [edx+12]
+	mov	ecx, DWORD PTR [edx-360]
+	xor	ecx, eax
+	call	@__security_check_cookie@4
+	mov	eax, OFFSET __ehfuncinfo$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z
+	jmp	___CxxFrameHandler3
+text$x	ENDS
+??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z ENDP ; std::operator<<<std::char_traits<char> >
 END

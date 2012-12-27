@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <iostream>
+#include <array>
 
 using namespace std;
 
@@ -322,14 +323,159 @@ void ch7_ex7(void)
 	cin.get();
 }
 
+const int Seasons = 4;
+//const array<string, Seasons> Snames = {"Spring", "Summer", "Fall", "Winter"};
+const char Seazon[Seasons][8] = 
+{
+	"Spring",
+	"Summer",
+	"Fall",
+	"Winter"
+};
+
+struct expenses
+{ 
+	double expens[Seasons]; 
+};
+
+void fill(expenses * expend);
+void show(expenses * expend);
+
+void fill(expenses * expend)
+{
+	for (int i = 0; i < Seasons; i++)
+	{
+		cout << "Enter ";
+
+		for (int x = 0; Seazon[i][x] != '\0'; x++)
+			cout << Seazon[i][x];
+		
+		cout << " expenses: ";
+		cin >> expend->expens[i];
+	}
+}
+
+void show(expenses * expend)
+{
+	double total = 0.0;
+	cout << "\nEXPENSES\n";
+	for (int i = 0; i < Seasons; i++)
+	{
+		cout << ": $" << expend->expens[i] << endl;
+		total += expend->expens[i];
+	}
+	cout << "Total Expenses: $" << total << endl;
+}
 void ch7_ex8(void)
 {
+	expenses expendables;
+	fill(&expendables);
+	show(&expendables);
+}
+
+//Exercise: Student class array of structs
+
+const int SLEN = 30;
+struct student {
+	char fullname[SLEN];
+	char hobby[SLEN];
+	int ooplevel;
+};
+int getinfo(student pa[], int n);
+void display1(student st);
+void display2(const student * ps);
+void display3(const student pa[], int n);
+
+int getinfo(student pa[], int n)
+{
+	int x = 0;
+	while (x < n)
+	{
+		cout << "Student #" << x << endl
+			 << "Name:\t";
+		cin.getline(pa[x].fullname, SLEN);
+		if (pa[x].fullname == " ")
+			return x;
+		cout << "Hobby:\t";
+		cin.getline(pa[x].hobby, SLEN);
+		cout << "Skill:\t";
+		cin >> pa[x].ooplevel;
+		cin.get();
+		x++;
+
+	}
+	return x;
+	
+}
+
+void display1(student st) 
+{
+	cout << "Name:\t" << st.fullname << endl;
+	cout << "Hobby:\t" << st.hobby << endl;
+	cout << "Skillz:\t" << st.ooplevel << "\n\n";
+}
+void display2(const student * ps)
+{
+	cout << "Name:\t" << ps->fullname << endl;
+	cout << "Hobby:\t" << ps->hobby << endl;
+	cout << "Skillz:\t" << ps->ooplevel << "\n\n";
+}
+void display3(const student pa[], int n)
+{
+	for (int x = 0; x < n; x++)
+	{
+		cout << "Name:\t" << pa[x].fullname << endl;
+		cout << "Hobby:\t" << pa[x].hobby << endl;
+		cout << "Skillz:\t" << pa[x].ooplevel << "\n\n";
+	}
 }
 void ch7_ex9(void)
 {
+	cout << "Enter class size: ";
+	int class_size;
+	cin >> class_size;
+	while (cin.get() != '\n')
+		continue;
+
+	student * ptr_stu = new student[class_size];
+	int entered = getinfo(ptr_stu, class_size);
+	for (int i = 0; i < entered; i++)
+	{
+		display1(ptr_stu[i]);
+		display2(&ptr_stu[i]);
+	}
+	display3(ptr_stu, entered);
+	delete [] ptr_stu;
+	cout << "Done\n";
+	//return 0;
+}
+
+double calculate(double x, double y, double (*pf)(double r, double s));
+double calculate(double x, double y, double (*pf)(double r, double s))
+{
+	return pf(x, y);
+}
+double add(double p, double q);
+double add(double p, double q)
+{
+	return p + q;
+}
+double subtract(double p, double q);
+double subtract(double p, double q)
+{
+	return p - q;
 }
 void ch7_ex10(void)
 {
+	double n, o;
+	n = o = 0.0;
+	cout << "Enter two double values to be transmuted <q to quit>: ";
+	while (cin >> n >> o)
+	{
+		cout << "Value 1: " << calculate(n, o, add) << endl;
+		cout << "Value 2: " << calculate(n, o, subtract) << endl;
+		cout << "Another\n";
+	}
 }
 
 
