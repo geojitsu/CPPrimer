@@ -9,6 +9,9 @@ void ch8_ex2(void);
 void ch8_ex3(void);
 void ch8_ex4(void);
 void ch8_ex5(void);
+void ch8_ex6(void);
+void ch8_ex7(void);
+
 using namespace std;
 
 int main () 
@@ -25,8 +28,8 @@ int main ()
 		case '3': ch8_ex3(); break;
 		case '4': ch8_ex4(); break;
 		case '5': ch8_ex5(); break;
-		/*case '6': ch8_ex6(); break;
-		case '7': ch8_ex7(); break;*/
+		case '6': ch8_ex6(); break;
+		case '7': ch8_ex7(); break;
 		default: cout << "Invalid selection, try again <q to quit>: ";
 	
 		}
@@ -196,24 +199,45 @@ void ch8_ex4(void)
 ////////////////
 /* EXERCISE 5 */
 /////START//////
-template <typename T>
-void max5(T qqq[]);
+namespace
+{
+	const int TELLY = 5;
+	int xabby[TELLY] = {1, 70, 12, 52, 500};
+	double xaddy[TELLY] = {1.01, 122.02, 923.03, 124.04, 5000.05};
+}
 
 template <typename T>
-void max5(T qqq[])
+auto max5(T qqq[]) -> T;
+
+template <typename T>
+auto max5(T qqq[]) -> T
 {
-	for (int x = 0; x < 5; x++)
-		cout << qqq[x] << " ";
-	cout << endl;
+	T theLargeOne = 0;
+
+	for (int x = 0; x < ::TELLY; x++)
+	{
+		theLargeOne = ((qqq[x] >= theLargeOne) ? qqq[x] : theLargeOne);
+
+		if (x == ::TELLY-1)
+			cout << qqq[x];
+		else if (x < ::TELLY-1)
+		{
+			cout << qqq[x] << ", ";
+		}
+	}
+	
+	cout << ":  ";	
+	return theLargeOne;
 }
 void ch8_ex5(void)
 {
-	const int TELLY = 5;
-	int xabby[TELLY] = {1, 2, 3, 4, 5};
-	double xaddy[TELLY] = {1.01, 2.02, 3.03, 4.04, 5.05};
+	int ilarge;
+	double dlarge;
 
-	max5(xabby);
-	max5(xaddy);
+	ilarge = max5(xabby);
+	cout << ilarge << endl; 
+	dlarge = max5(xaddy);
+	cout << dlarge << endl;
 }
 ////////////////
 /* EXERCISE 5 */
@@ -223,6 +247,123 @@ void ch8_ex5(void)
 /* EXERCISE 6 */
 /////START//////
 
+template <typename T>
+T maxn(T arr[], int n);
+
+template <> char * maxn<char *>(char * arr[], int n);
+template <> char * maxn<char *>(char * arr[], int n)
+{
+	char * sBig = arr[0];
+
+	for (int x = 0; x < n; x++)
+		sBig = (strlen(*(arr+x)) >= strlen(sBig)) ? *(arr+x) : sBig;
+
+	return sBig;
+}
+
+template <typename T>
+T maxn(T * arr, int n)
+{
+	T theLargeOne = 0;
+
+	for (int x = 0; x < n; x++)
+	{
+		theLargeOne = ((arr[x] >= theLargeOne) ? arr[x] : theLargeOne);
+
+		if (x == n-1)
+			cout << arr[x];
+		else if (x < n-1)
+		{
+			cout << arr[x] << ", ";
+		}
+	}
+	
+	cout << ":  ";
+	return theLargeOne;
+
+}
+
+
+void ch8_ex6(void)
+{
+	char * textoids[TELLY-1] = { "how", "nowethboweth", "brown", "cowfrest" };
+	char * sLargerThan = maxn(textoids, 4);
+	
+	cout << "One string to rule them all: " << maxn(textoids, 4) << endl;
+	cout << "One int to find them: ";
+	cout << maxn(xabby, TELLY) << endl;
+	cout << "One double to bring them all: ";
+	cout << maxn(xaddy, TELLY) << endl << "And in the darkness (cast) them";
+}
+
 ////////////////
 /* EXERCISE 6 */
+//////END///////
+
+////////////////
+/* EXERCISE 7 */
+/////START//////
+template <typename T>
+T SumArray(T arr[], int n);
+
+template <typename T>
+T SumArray(T * arr[], int n);
+
+struct debts
+{
+	char name[50];
+	double amount;
+};
+
+void ch8_ex7(void)
+{
+	int things[6] = {13, 31, 103, 301, 310, 130};
+	double dsum;
+	int isum;
+	
+	debts mr_E[3] =
+	{
+		{"Ima Wolfe", 2400.0},
+		{"Ura Foxe", 1300.0},
+		{"Iby Stout", 1800.0},
+	};
+
+	double * pd[3];
+
+	for (int i = 0; i < 3; i++)
+		pd[i] = &mr_E[i].amount;
+
+
+	isum = SumArray(things, 6);
+	cout << "Listing the sum total of Mr E's things: " << isum << endl;
+	dsum = SumArray(pd, 3);
+	cout << "Listings the sum total of Mr E's Debts: " << dsum << endl;
+	
+}
+
+template <typename T>
+T SumArray(T arr[], int n)
+{
+	T sumTotal = 0;
+
+	cout << "template A\n";
+	for (int i = 0; i < n; i++)
+		sumTotal += arr[i];
+
+	return sumTotal;
+}
+
+template <typename T>
+T SumArray(T * arr[], int n)
+{
+	T sumTotal = 0;
+
+	cout << "template B\n";
+	for (int i = 0; i < n; i++)
+		sumTotal += *(*(arr+i));
+
+	return sumTotal;
+}
+////////////////
+/* EXERCISE 7 */
 //////END///////
