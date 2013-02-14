@@ -24,18 +24,18 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="golf.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ch10ex3_golf.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="golf.cpp">
+    <ClCompile Include="ch10ex3_golfdef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="golfrun.cpp">
+    <ClCompile Include="ch10ex3_golf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
